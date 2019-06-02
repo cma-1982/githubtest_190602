@@ -81,7 +81,6 @@ bool R_PG_Timer_Set_MTU_U0_C1(void)
 
 	parameters.channel_mode = PDL_MTU2_MODE_PHASE1;
 	parameters.TGR_A_B_operation = PDL_MTU2_A_IC_BOTH_EDGES | PDL_MTU2_B_IC_BOTH_EDGES;
-	parameters.noise_filter_operation = PDL_MTU2_NF_A_U_ENABLE | PDL_MTU2_NF_B_V_ENABLE | PDL_MTU2_NF_PCLK_DIV_1;
 	parameters.TGRA_TCNTV_value = 0;
 	parameters.TGRB_TCNTW_value = 0;
 

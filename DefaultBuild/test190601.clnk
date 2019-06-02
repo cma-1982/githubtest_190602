@@ -26,6 +26,7 @@
 -input=DefaultBuild\R_PG_ADC_12_S12AD0.obj
 -input=DefaultBuild\Interrupt_INTC.obj
 -input=DefaultBuild\Interrupt_CMT.obj
+-input=DefaultBuild\R_PG_SCI_C0.obj
 -library=C:\Renesas\PDG2\lib\RX63N\RX63N_library_100_little.lib
 -noprelink
 -output=DefaultBuild\test190601.abs

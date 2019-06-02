@@ -92,7 +92,7 @@ bool R_PG_Timer_Set_MTU_U0_C0(void)
 
 	res = R_MTU2_Set(
 		0,
-		PDL_MTU2_PIN_0A_PB3 | PDL_MTU2_PIN_0C_P32,
+		PDL_MTU2_PIN_0A_PB3 | PDL_MTU2_PIN_0C_PB1,
 		PDL_NO_DATA
 	);
 
