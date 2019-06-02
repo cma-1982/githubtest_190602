@@ -9,7 +9,7 @@ void main(void)
 
 while(1){
 	
-	if(cnt1>3000){
+	if(cnt1>4000){
 		R_PG_IO_PORT_Write_P5(0x1);
 		cnt1=0;
 	}
