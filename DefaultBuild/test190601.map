@@ -1,4 +1,4 @@
-Renesas Optimizing Linker (W3.01.00 )             02-Jun-2019 15:43:37
+Renesas Optimizing Linker (W3.01.00 )             03-Jun-2019 17:27:55
 
 *** Options ***
 
@@ -11,16 +11,6 @@ Renesas Optimizing Linker (W3.01.00 )             02-Jun-2019 15:43:37
 -input=DefaultBuild\R_PG_Clock.obj
 -input=DefaultBuild\R_PG_IO_PORT.obj
 -input=DefaultBuild\R_PG_IO_PORT_P5.obj
--input=DefaultBuild\R_PG_Timer_CMT_U0.obj
--input=DefaultBuild\R_PG_ADC_12_S12AD0.obj
--input=DefaultBuild\Interrupt_INTC.obj
--input=DefaultBuild\Interrupt_CMT.obj
--input=DefaultBuild\hwsetup.obj
--input=DefaultBuild\lowsrc.obj
--input=DefaultBuild\SCI.obj
--input=DefaultBuild\R_PG_Clock.obj
--input=DefaultBuild\R_PG_IO_PORT.obj
--input=DefaultBuild\R_PG_IO_PORT_P5.obj
 -input=DefaultBuild\R_PG_Timer_MTU_U0_C0.obj
 -input=DefaultBuild\R_PG_Timer_MTU_U0_C1.obj
 -input=DefaultBuild\R_PG_Timer_MTU_U0_C2.obj
@@ -28,10 +18,13 @@ Renesas Optimizing Linker (W3.01.00 )             02-Jun-2019 15:43:37
 -input=DefaultBuild\R_PG_Timer_MTU_U0_C4.obj
 -input=DefaultBuild\R_PG_Timer_MTU_U0.obj
 -input=DefaultBuild\R_PG_Timer_CMT_U0.obj
+-input=DefaultBuild\R_PG_SCI_C0.obj
 -input=DefaultBuild\R_PG_ADC_12_S12AD0.obj
 -input=DefaultBuild\Interrupt_INTC.obj
 -input=DefaultBuild\Interrupt_CMT.obj
--input=DefaultBuild\R_PG_SCI_C0.obj
+-input=DefaultBuild\hwsetup.obj
+-input=DefaultBuild\lowsrc.obj
+-input=DefaultBuild\SCI.obj
 -library=C:\Renesas\PDG2\lib\RX63N\RX63N_library_100_little.lib
 -noprelink
 -output=DefaultBuild\test190601.abs
@@ -44,13 +37,6 @@ Renesas Optimizing Linker (W3.01.00 )             02-Jun-2019 15:43:37
 
 *** Error information ***
 
-W0561010:Duplicate file specified in option "input" : "DefaultBuild\R_PG_Clock.obj"
-W0561010:Duplicate file specified in option "input" : "DefaultBuild\R_PG_IO_PORT.obj"
-W0561010:Duplicate file specified in option "input" : "DefaultBuild\R_PG_IO_PORT_P5.obj"
-W0561010:Duplicate file specified in option "input" : "DefaultBuild\R_PG_Timer_CMT_U0.obj"
-W0561010:Duplicate file specified in option "input" : "DefaultBuild\R_PG_ADC_12_S12AD0.obj"
-W0561010:Duplicate file specified in option "input" : "DefaultBuild\Interrupt_INTC.obj"
-W0561010:Duplicate file specified in option "input" : "DefaultBuild\Interrupt_CMT.obj"
 W0561100:Cannot find "PIntPRG" specified in option "start"
 
 *** Mapping List ***
