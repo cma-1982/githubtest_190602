@@ -40,6 +40,8 @@
           <Path>default190601\MTU\R_PG_Timer_MTU_U0_C4.h</Path>
           <Path>default190601\MTU\R_PG_Timer_MTU_U0.c</Path>
           <Path>default190601\MTU\R_PG_Timer_MTU_U0.h</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C5.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C5.h</Path>
         </Category>
         <Category Name="CMT">
           <Path>default190601\CMT\R_PG_Timer_CMT_U0.c</Path>
@@ -169,6 +171,7 @@
           <Path>DefaultBuild\hwsetup.obj</Path>
           <Path>DefaultBuild\lowsrc.obj</Path>
           <Path>DefaultBuild\SCI.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0_C5.obj</Path>
         </LinkOrder>
         <CommonOptions>
           <IncludePathForC>.</IncludePathForC>

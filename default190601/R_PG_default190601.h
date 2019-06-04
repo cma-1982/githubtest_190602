@@ -9,7 +9,7 @@
 * Version      : 
 * Description  : 
 ******************************************************************************
-* History : 03.06.2019 Version Description
+* History : 04.06.2019 Version Description
 *         :   
 ******************************************************************************/
 
@@ -25,6 +25,7 @@ Includes   <System Includes> , "Project Includes"
 #include ".\MTU\R_PG_Timer_MTU_U0_C2.h"
 #include ".\MTU\R_PG_Timer_MTU_U0_C3.h"
 #include ".\MTU\R_PG_Timer_MTU_U0_C4.h"
+#include ".\MTU\R_PG_Timer_MTU_U0_C5.h"
 #include ".\MTU\R_PG_Timer_MTU_U0.h"
 #include ".\CMT\R_PG_Timer_CMT_U0.h"
 #include ".\SCI\R_PG_SCI_C0.h"
