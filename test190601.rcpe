@@ -90,7 +90,6 @@
       <Path>SCI.c</Path>
       <Path>lowsrc.h</Path>
       <Path>SCI.h</Path>
-      <Path>r_bsp\platform.h</Path>
     </Files>
     <DebugOptions>
       <DebugTool>Simulator</DebugTool>
@@ -108,7 +107,6 @@
           <Option>-fpu</Option>
           <Option>-dbl_size=8</Option>
           <Option>-lang=c</Option>
-          <Option>-include=r_bsp</Option>
           <Option>-include=.</Option>
           <Option>-include=default190601</Option>
           <Option>-include=default190601\i_src</Option>
@@ -180,7 +178,6 @@
           <Path>DefaultBuild\Interrupt_MTU2_TPU.obj</Path>
         </LinkOrder>
         <CommonOptions>
-          <IncludePathForC>r_bsp</IncludePathForC>
           <IncludePathForC>.</IncludePathForC>
           <IncludePathForC>default190601</IncludePathForC>
           <IncludePathForC>default190601\i_src</IncludePathForC>

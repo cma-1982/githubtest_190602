@@ -1,7 +1,6 @@
 #include "R_PG_default190601.h"//PDGÇ≈ê∂ê¨Ç≥ÇÍÇΩê›íË
 #include "SCI.h"
 #include "iodefine.h"
-#include "r_flash_api_rx_if.h"
 
 short	cnt1,cnt2,an00,an01,an02,an03,an04,an05,an06,an07,pwm1,gyro1;
 char	sw01;

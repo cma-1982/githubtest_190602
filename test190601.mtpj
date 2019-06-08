@@ -113,13 +113,6 @@
       <TreeImageGuid>03cad1e8-2eb3-4cde-a8a3-982423631122</TreeImageGuid>
       <ParentItem>0c860fee-fb0e-4a34-a2df-150217b3490a</ParentItem>
     </Instance>
-    <Instance Guid="46ce9691-0bfe-4a68-8323-19e2558ddc34">
-      <Name>platform.h</Name>
-      <Type>File</Type>
-      <RelativePath>r_bsp\platform.h</RelativePath>
-      <TreeImageGuid>03cad1e8-2eb3-4cde-a8a3-982423631122</TreeImageGuid>
-      <ParentItem>0c860fee-fb0e-4a34-a2df-150217b3490a</ParentItem>
-    </Instance>
     <Instance Guid="87468bb3-ff76-418c-8746-6e06fda93a89">
       <Name>SYSTEM</Name>
       <Type>Category</Type>
@@ -868,7 +861,7 @@
       <COptionFloatOrder-DefaultValue>False</COptionFloatOrder-DefaultValue>
       <COptionIncode-DefaultValue>Sjis</COptionIncode-DefaultValue>
       <IsLockedByUser>False</IsLockedByUser>
-      <TimeTagModified--0>-8586416072965755345</TimeTagModified--0>
+      <TimeTagModified--0>-8586416009854110440</TimeTagModified--0>
       <COptionLangC-0>C</COptionLangC-0>
       <COptionListfile-0>False</COptionListfile-0>
       <COptionLogo-0>False</COptionLogo-0>
@@ -887,8 +880,7 @@
       <COptionXcref-0>False</COptionXcref-0>
       <COptionControlFlowIntegrity-0>None</COptionControlFlowIntegrity-0>
       <COptionDebug-0>True</COptionDebug-0>
-      <COptionInclude-0>r_bsp
-.
+      <COptionInclude-0>.
 default190601
 default190601\i_src
 default190601\AD_12
@@ -1112,7 +1104,7 @@ D_2=R_2
       <LinkOptionCommandLine-DefaultValue />
       <LinkOptionSplitVect-DefaultValue>False</LinkOptionSplitVect-DefaultValue>
       <IsLockedByUser>False</IsLockedByUser>
-      <TimeTagModified--0>-8586420565457912022</TimeTagModified--0>
+      <TimeTagModified--0>-8586416011127664858</TimeTagModified--0>
       <LinkOptionCpu-0>False</LinkOptionCpu-0>
       <LinkOptionForm-0>Absolute</LinkOptionForm-0>
       <LinkOptionFormConvert-0>Stype</LinkOptionFormConvert-0>
@@ -1752,10 +1744,6 @@ D_2=R_2
       <ItemAddTime>636952627889644854</ItemAddTime>
       <ItemAddTimeCount>0</ItemAddTimeCount>
     </Instance>
-    <Instance Guid="46ce9691-0bfe-4a68-8323-19e2558ddc34">
-      <ItemAddTime>636956287889030662</ItemAddTime>
-      <ItemAddTimeCount>0</ItemAddTimeCount>
-    </Instance>
     <Instance Guid="a7be515f-f007-45ed-9059-4e1500c0f74d">
       <TimeTagModified-SourceItem0--0>-8586422450949679807</TimeTagModified-SourceItem0--0>
       <SourceItem0-IsLockedByUser>False</SourceItem0-IsLockedByUser>
@@ -1773,7 +1761,7 @@ D_2=R_2
       <SourceItem3-IsLockedByUser>False</SourceItem3-IsLockedByUser>
       <SourceItem3-BuildingTarget-0>True</SourceItem3-BuildingTarget-0>
       <SourceItem3-IndividualCompileOption-0>False</SourceItem3-IndividualCompileOption-0>
-      <TimeTagModified-SourceItem4--0>-8586420680593145874</TimeTagModified-SourceItem4--0>
+      <TimeTagModified-SourceItem4--0>-8586416042940548911</TimeTagModified-SourceItem4--0>
       <SourceItem4-IsLockedByUser>False</SourceItem4-IsLockedByUser>
       <SourceItem4-BuildingTarget-0>True</SourceItem4-BuildingTarget-0>
       <SourceItem4-IndividualCompileOption-0>False</SourceItem4-IndividualCompileOption-0>
