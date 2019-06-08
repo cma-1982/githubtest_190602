@@ -1,11 +1,13 @@
 #include "R_PG_default190601.h"//PDGで生成された設定
 #include "SCI.h"
 #include "iodefine.h"
+#include "r_flash_api_rx_if.h"
+
 short	cnt1,cnt2,an00,an01,an02,an03,an04,an05,an06,an07,pwm1,gyro1;
 char	sw01;
 short	result[14];
 char	senddata[5], receivedata[5];
-int	 enc1;
+int	enc1, enc2;
 
 void main(void)
 {
@@ -20,7 +22,7 @@ while(1){
 	
 	R_PG_IO_PORT_Read_P55(&sw01);//スイッチ入力
 
-	if(cnt2>=400)printf( "gyro=%6d ,an00=%4d ,an01=%4d ,an02=%4d ,an03=%4d ,an04=%4d ,an05=%4d ,an06=%4d ,an07=%4d ,sw=%4d ,enc=%4d \r",gyro1,an00,an01,an02,an03,an04,an05,an06,an07,sw01,enc1),cnt2 = 0;
+	if(cnt2>=50)printf( "gyro=%6d ,an00=%4d ,an01=%4d ,an02=%4d ,an03=%4d ,an04=%4d ,an05=%4d ,an06=%4d ,an07=%4d ,sw=%4d ,enc1=%8d ,enc2=%8d \r",gyro1,an00,an01,an02,an03,an04,an05,an06,an07,sw01,enc1,enc2),cnt2 = 0;
 	
 	if(sw01) pwm1 = 50;
 	else pwm1 = 0;
@@ -43,7 +45,8 @@ void Cmt0IntFunc(void){//1ms_timer
 	//R_PG_Timer_SetTGR_B_MTU_U0_C0(b1);//TGR_D　PWM出力
 	
 	
-	R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc1 );
+	R_PG_Timer_GetCounterValue_MTU_U0_C1( & enc1 );
+	R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc2 );
 	
 	
 	senddata[0] = 0x06;

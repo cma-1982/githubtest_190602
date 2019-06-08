@@ -78,6 +78,8 @@
           <Path>default190601\i_src\r_pdl_sci_RX63Nxx.h</Path>
           <Path>default190601\i_src\r_pdl_adc_12.h</Path>
           <Path>default190601\i_src\r_pdl_adc_12_RX63Nxx.h</Path>
+          <Path>default190601\i_src\Interrupt_MTU2.c</Path>
+          <Path>default190601\i_src\Interrupt_MTU2_TPU.c</Path>
         </Category>
         <Path>default190601\R_PG_default190601.h</Path>
         <Path>default190601\R_PG_IntFuncsExtern.h</Path>
@@ -88,6 +90,7 @@
       <Path>SCI.c</Path>
       <Path>lowsrc.h</Path>
       <Path>SCI.h</Path>
+      <Path>r_bsp\platform.h</Path>
     </Files>
     <DebugOptions>
       <DebugTool>Simulator</DebugTool>
@@ -105,6 +108,7 @@
           <Option>-fpu</Option>
           <Option>-dbl_size=8</Option>
           <Option>-lang=c</Option>
+          <Option>-include=r_bsp</Option>
           <Option>-include=.</Option>
           <Option>-include=default190601</Option>
           <Option>-include=default190601\i_src</Option>
@@ -172,8 +176,11 @@
           <Path>DefaultBuild\lowsrc.obj</Path>
           <Path>DefaultBuild\SCI.obj</Path>
           <Path>DefaultBuild\R_PG_Timer_MTU_U0_C5.obj</Path>
+          <Path>DefaultBuild\Interrupt_MTU2.obj</Path>
+          <Path>DefaultBuild\Interrupt_MTU2_TPU.obj</Path>
         </LinkOrder>
         <CommonOptions>
+          <IncludePathForC>r_bsp</IncludePathForC>
           <IncludePathForC>.</IncludePathForC>
           <IncludePathForC>default190601</IncludePathForC>
           <IncludePathForC>default190601\i_src</IncludePathForC>
