@@ -1,12 +1,18 @@
 #include "R_PG_default190601.h"//PDGで生成された設定
 #include "SCI.h"
 #include "iodefine.h"
+#include "E2dataFlash.h"
 
-short	cnt1,cnt2,an00,an01,an02,an03,an04,an05,an06,an07,pwm1,gyro1;
+
+short	cnt1,cnt2;
+short	an00,an01,an02,an03,an04,an05,an06,an07;
+short	pwm1,pwm2;
+short	gyro1;
 char	sw01;
 short	result[14];
 char	senddata[5], receivedata[5];
 int	enc1, enc2;
+
 
 void main(void)
 {
@@ -35,13 +41,17 @@ while(1){
 }*/
 
 void Cmt0IntFunc(void){//1ms_timer
-	int b1;
+	int b1,b2;
 	cnt1++;
 	cnt2++;
+	cnt_flash++;
 	
 	
 	b1 = 4798 * pwm1 / 100;
-	//R_PG_Timer_SetTGR_B_MTU_U0_C0(b1);//TGR_D　PWM出力
+	R_PG_Timer_SetTGR_B_MTU_U0_C0(b1);//PWM出力
+	
+	b2 = 4798 * pwm2 / 100;
+	R_PG_Timer_SetTGR_D_MTU_U0_C0(b1);//PWM出力
 	
 	
 	R_PG_Timer_GetCounterValue_MTU_U0_C1( & enc1 );
