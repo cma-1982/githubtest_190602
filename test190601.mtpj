@@ -113,6 +113,20 @@
       <TreeImageGuid>03cad1e8-2eb3-4cde-a8a3-982423631122</TreeImageGuid>
       <ParentItem>0c860fee-fb0e-4a34-a2df-150217b3490a</ParentItem>
     </Instance>
+    <Instance Guid="3e68fbaf-f7d1-4342-bb5f-10bd7d86cec8">
+      <Name>E2dataFlash.c</Name>
+      <Type>File</Type>
+      <RelativePath>E2dataFlash.c</RelativePath>
+      <TreeImageGuid>941832c1-fc3b-4e1b-94e8-01ea17128b42</TreeImageGuid>
+      <ParentItem>0c860fee-fb0e-4a34-a2df-150217b3490a</ParentItem>
+    </Instance>
+    <Instance Guid="18ccbc5e-d02a-4cd8-96aa-92933b77eac3">
+      <Name>E2dataFlash.h</Name>
+      <Type>File</Type>
+      <RelativePath>E2dataFlash.h</RelativePath>
+      <TreeImageGuid>03cad1e8-2eb3-4cde-a8a3-982423631122</TreeImageGuid>
+      <ParentItem>0c860fee-fb0e-4a34-a2df-150217b3490a</ParentItem>
+    </Instance>
     <Instance Guid="87468bb3-ff76-418c-8746-6e06fda93a89">
       <Name>SYSTEM</Name>
       <Type>Category</Type>
@@ -612,7 +626,9 @@
       <SourceItemType22>CSource</SourceItemType22>
       <SourceItemGuid23>122ce03b-e5f6-4012-9d32-f0aafe59a257</SourceItemGuid23>
       <SourceItemType23>CSource</SourceItemType23>
-      <SourceItemCount>24</SourceItemCount>
+      <SourceItemGuid24>3e68fbaf-f7d1-4342-bb5f-10bd7d86cec8</SourceItemGuid24>
+      <SourceItemType24>CSource</SourceItemType24>
+      <SourceItemCount>25</SourceItemCount>
       <LastDeviceChangedCounter>0</LastDeviceChangedCounter>
     </Instance>
     <Instance Guid="9e208646-ccba-4100-a676-29b1efe6545f">
@@ -1744,6 +1760,14 @@ D_2=R_2
       <ItemAddTime>636952627889644854</ItemAddTime>
       <ItemAddTimeCount>0</ItemAddTimeCount>
     </Instance>
+    <Instance Guid="3e68fbaf-f7d1-4342-bb5f-10bd7d86cec8">
+      <ItemAddTime>636957950364179993</ItemAddTime>
+      <ItemAddTimeCount>0</ItemAddTimeCount>
+    </Instance>
+    <Instance Guid="18ccbc5e-d02a-4cd8-96aa-92933b77eac3">
+      <ItemAddTime>636957950484138090</ItemAddTime>
+      <ItemAddTimeCount>0</ItemAddTimeCount>
+    </Instance>
     <Instance Guid="a7be515f-f007-45ed-9059-4e1500c0f74d">
       <TimeTagModified-SourceItem0--0>-8586422450949679807</TimeTagModified-SourceItem0--0>
       <SourceItem0-IsLockedByUser>False</SourceItem0-IsLockedByUser>
@@ -1841,6 +1865,10 @@ D_2=R_2
       <SourceItem23-IsLockedByUser>False</SourceItem23-IsLockedByUser>
       <SourceItem23-BuildingTarget-0>True</SourceItem23-BuildingTarget-0>
       <SourceItem23-IndividualCompileOption-0>False</SourceItem23-IndividualCompileOption-0>
+      <TimeTagModified-SourceItem24--0>-8586414410490595815</TimeTagModified-SourceItem24--0>
+      <SourceItem24-IsLockedByUser>False</SourceItem24-IsLockedByUser>
+      <SourceItem24-BuildingTarget-0>True</SourceItem24-BuildingTarget-0>
+      <SourceItem24-IndividualCompileOption-0>False</SourceItem24-IndividualCompileOption-0>
     </Instance>
   </Class>
   <Class Guid="44fa27c9-0aa0-4297-bd3b-2c5c5bdb8881">

@@ -90,6 +90,8 @@
       <Path>SCI.c</Path>
       <Path>lowsrc.h</Path>
       <Path>SCI.h</Path>
+      <Path>E2dataFlash.c</Path>
+      <Path>E2dataFlash.h</Path>
     </Files>
     <DebugOptions>
       <DebugTool>Simulator</DebugTool>
@@ -176,6 +178,7 @@
           <Path>DefaultBuild\R_PG_Timer_MTU_U0_C5.obj</Path>
           <Path>DefaultBuild\Interrupt_MTU2.obj</Path>
           <Path>DefaultBuild\Interrupt_MTU2_TPU.obj</Path>
+          <Path>DefaultBuild\E2dataFlash.obj</Path>
         </LinkOrder>
         <CommonOptions>
           <IncludePathForC>.</IncludePathForC>
