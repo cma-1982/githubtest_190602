@@ -29,6 +29,7 @@ Includes   <System Includes> , "Project Includes"
 #include ".\MTU\R_PG_Timer_MTU_U0.h"
 #include ".\CMT\R_PG_Timer_CMT_U0.h"
 #include ".\SCI\R_PG_SCI_C0.h"
+#include ".\SCI\R_PG_SCI_C2.h"
 #include ".\AD_12\R_PG_ADC_12_S12AD0.h"
 
 

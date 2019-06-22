@@ -28,6 +28,8 @@
           <Path>default190601\IO\R_PG_IO_PORT_P5.h</Path>
           <Path>default190601\IO\R_PG_IO_PORT_PB.c</Path>
           <Path>default190601\IO\R_PG_IO_PORT_PB.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PD.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PD.h</Path>
         </Category>
         <Category Name="MTU">
           <Path>default190601\MTU\R_PG_Timer_MTU_U0_C0.c</Path>
@@ -52,6 +54,8 @@
         <Category Name="SCI">
           <Path>default190601\SCI\R_PG_SCI_C0.c</Path>
           <Path>default190601\SCI\R_PG_SCI_C0.h</Path>
+          <Path>default190601\SCI\R_PG_SCI_C2.c</Path>
+          <Path>default190601\SCI\R_PG_SCI_C2.h</Path>
         </Category>
         <Category Name="AD_12">
           <Path>default190601\AD_12\R_PG_ADC_12_S12AD0.c</Path>
@@ -182,6 +186,8 @@
           <Path>DefaultBuild\Interrupt_MTU2_TPU.obj</Path>
           <Path>DefaultBuild\E2dataFlash.obj</Path>
           <Path>DefaultBuild\R_PG_IO_PORT_PB.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_PD.obj</Path>
+          <Path>DefaultBuild\R_PG_SCI_C2.obj</Path>
         </LinkOrder>
         <CommonOptions>
           <IncludePathForC>.</IncludePathForC>
