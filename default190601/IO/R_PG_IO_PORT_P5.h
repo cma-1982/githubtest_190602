@@ -9,7 +9,7 @@
 * Version      : 1.00
 * Description  : 
 ******************************************************************************
-* History : 05.06.2019 Version Description
+* History : 22.06.2019 Version Description
 *         :   
 ******************************************************************************/
 
@@ -25,7 +25,6 @@ bool R_PG_IO_PORT_Set_P50(void);
 bool R_PG_IO_PORT_Set_P51(void);
 bool R_PG_IO_PORT_Set_P52(void);
 bool R_PG_IO_PORT_Set_P53(void);
-bool R_PG_IO_PORT_Set_P55(void);
 bool R_PG_IO_PORT_Read_P5(uint8_t * data);
 bool R_PG_IO_PORT_Read_P50(uint8_t * data);
 bool R_PG_IO_PORT_Read_P51(uint8_t * data);
@@ -38,7 +37,6 @@ bool R_PG_IO_PORT_Write_P50(uint8_t data);
 bool R_PG_IO_PORT_Write_P51(uint8_t data);
 bool R_PG_IO_PORT_Write_P52(uint8_t data);
 bool R_PG_IO_PORT_Write_P53(uint8_t data);
-bool R_PG_IO_PORT_Write_P55(uint8_t data);
 
 
 

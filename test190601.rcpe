@@ -26,6 +26,8 @@
           <Path>default190601\IO\R_PG_IO_PORT.h</Path>
           <Path>default190601\IO\R_PG_IO_PORT_P5.c</Path>
           <Path>default190601\IO\R_PG_IO_PORT_P5.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PB.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PB.h</Path>
         </Category>
         <Category Name="MTU">
           <Path>default190601\MTU\R_PG_Timer_MTU_U0_C0.c</Path>
@@ -179,6 +181,7 @@
           <Path>DefaultBuild\Interrupt_MTU2.obj</Path>
           <Path>DefaultBuild\Interrupt_MTU2_TPU.obj</Path>
           <Path>DefaultBuild\E2dataFlash.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_PB.obj</Path>
         </LinkOrder>
         <CommonOptions>
           <IncludePathForC>.</IncludePathForC>
