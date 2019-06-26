@@ -9,7 +9,7 @@
 * Version      : 
 * Description  : 
 ******************************************************************************
-* History : 22.06.2019 Version Description
+* History : 26.06.2019 Version Description
 *         :   
 ******************************************************************************/
 
@@ -20,6 +20,7 @@ Includes   <System Includes> , "Project Includes"
 #include ".\SYSTEM\R_PG_Clock.h"
 #include ".\IO\R_PG_IO_PORT.h"
 #include ".\IO\R_PG_IO_PORT_P5.h"
+#include ".\IO\R_PG_IO_PORT_PA.h"
 #include ".\IO\R_PG_IO_PORT_PB.h"
 #include ".\IO\R_PG_IO_PORT_PD.h"
 #include ".\MTU\R_PG_Timer_MTU_U0_C0.h"

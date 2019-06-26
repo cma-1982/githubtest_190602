@@ -27,6 +27,7 @@
 -input=DefaultBuild\R_PG_IO_PORT_PB.obj
 -input=DefaultBuild\R_PG_IO_PORT_PD.obj
 -input=DefaultBuild\R_PG_SCI_C2.obj
+-input=DefaultBuild\R_PG_IO_PORT_PA.obj
 -library=C:\Renesas\PDG2\lib\RX63N\RX63N_library_100_little.lib
 -noprelink
 -output=DefaultBuild\test190601.abs

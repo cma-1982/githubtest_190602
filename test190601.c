@@ -3,6 +3,11 @@
 #include "iodefine.h"
 #include "E2dataFlash.h"
 
+
+void 		spi_write( unsigned char data );
+unsigned char 	spi_read( void );
+
+
 short		pattern;
 short		cnt1,cnt2,cnt3;
 short		an00,an01,an02,an03,an04,an05,an06,an07;
@@ -13,6 +18,7 @@ char		sw01;
 short		result[14];
 char		senddata[5], receivedata[5];
 int		enc1, enc2;
+short		spi_data;
 
 
 void main(void)
@@ -26,15 +32,16 @@ switch( pattern ){
 			R_PG_SCI_I2CMode_Send_C0(0,0xa0,senddata,2);//I2C送信_ビット幅、アドレス、内容、送る数
 			R_PG_SCI_I2CMode_Receive_C0(0,0xa1,receivedata,1);
 			eep_data = receivedata[0];
+			R_PG_IO_PORT_Write_P5(0xf);
 			pattern = 1;
+				
+			initFlash();
 	break;
 	
 	case 1:
-		R_PG_IO_PORT_Write_P5(0xf);
-
-		
 		//if(cnt2>=100)printf( "gyro=%6d, an00=%4d, an01=%4d, an02=%4d, an03=%4d, an04=%4d, an05=%4d, an06=%4d, an07=%4d, sw=%4d,  enc1=%8d, enc2=%8d, eeprom=%8d\r",gyro1,an00,an01,an02,an03,an04,an05,an06,an07,sw01,enc1,enc2,eep_data),cnt2 = 0;
-		if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
+		//if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
+		if(cnt2>=100)printf( "pattern = %2d, who am i = 0x%2x\r", pattern, spi_data ),cnt2 = 0;
 		
 		if(!sw01&&cnt3>=500) {
 			/*senddata[0] = 0x00, senddata[1] = 0x00;//データ読む
@@ -63,13 +70,13 @@ switch( pattern ){
 		if(cnt3>=6000){
 			cnt3 = 0;
 		} else if (cnt3>=5000) {
-			pwm1 = -90;
+			pwm1 = -100;
 		} else if (cnt3>=4000) {
 			pwm1 = -50;
 		} else if (cnt3>=3000) {
 			pwm1 =  0;
 		} else if (cnt3>=2000) {
-			pwm1 = 90;
+			pwm1 = 100;
 		} else if (cnt3>=1000) {
 			pwm1 = 50;
 		} else {
@@ -243,13 +250,15 @@ void Cmt0IntFunc(void){//1ms_timer
 	R_PG_Timer_GetCounterValue_MTU_U0_C1( & enc1 );
 	R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc2 );
 	
-	
+	spi_write(0x75);
+	spi_data = spi_read();
+	/*
 	senddata[0] = 0x06;
 	R_PG_SCI_I2CMode_Send_C0(0,0xd2,senddata,1);//I2C送信_ビット幅、アドレス、内容、送る数
 	R_PG_SCI_I2CMode_Receive_C0(0,0xd3,receivedata,2);
 	gyro1 = receivedata[1] << 8 | receivedata[0];
-	
-	
+	*/
+
 	R_PG_ADC_12_StartConversionSW_S12AD0();//AD変換開始
 	R_PG_ADC_12_GetResult_S12AD0(result);//AD変換値をレジスタに格納
 	an00 = result[0];
@@ -262,3 +271,40 @@ void Cmt0IntFunc(void){//1ms_timer
 	an07 = result[7];
 	R_PG_ADC_12_StopConversion_S12AD0();
 }
+
+void spi_write( unsigned char data )
+{
+	uint8_t data_tr[] = { data }, data_re_dummy[ 1 ];
+	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re_dummy, 1);
+	R_PG_IO_PORT_Write_P5(0xf);
+	//printf("msd_write = 0x%x\n", data_tr[ 0 ]);
+}
+
+unsigned char spi_read( void )
+{
+	uint8_t data_tr_dummy[] = { 0xff }, data_re[ 1 ] = { 0x00 }, ret;
+	volatile short data;
+	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr_dummy, data_re, 1);
+	R_PG_IO_PORT_Write_P5(0xf);
+	
+	data = data_re[0];
+	ret = data & 0x00ff;
+	
+	//printf("msd_read = 0x%x\n", ret);
+	return  ret;
+}
+
+/*
+unsigned char spi_read( void ){	
+	unsigned char	data_tr_dummy[] = { 0x75 }, data_re[ 1 ] = { 0xff }, ret;
+	volatile short	data;
+	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr_dummy, data_re, 1);
+	R_PG_IO_PORT_Write_P5(0xf);
+	
+	ret = data_re[0];
+	//ret = data & 0x00ff;
+	return  ret;
+}*/

@@ -30,6 +30,8 @@
           <Path>default190601\IO\R_PG_IO_PORT_PB.h</Path>
           <Path>default190601\IO\R_PG_IO_PORT_PD.c</Path>
           <Path>default190601\IO\R_PG_IO_PORT_PD.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PA.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PA.h</Path>
         </Category>
         <Category Name="MTU">
           <Path>default190601\MTU\R_PG_Timer_MTU_U0_C0.c</Path>
@@ -188,6 +190,7 @@
           <Path>DefaultBuild\R_PG_IO_PORT_PB.obj</Path>
           <Path>DefaultBuild\R_PG_IO_PORT_PD.obj</Path>
           <Path>DefaultBuild\R_PG_SCI_C2.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_PA.obj</Path>
         </LinkOrder>
         <CommonOptions>
           <IncludePathForC>.</IncludePathForC>

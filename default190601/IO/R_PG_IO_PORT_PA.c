@@ -28,7 +28,7 @@
 * Copyright (C) 2010-2013 Renesas Electronics Corporation.
 * and Renesas Solutions Corporation. All rights reserved.
 ******************************************************************************
-* File Name    : R_PG_IO_PORT_PD.c
+* File Name    : R_PG_IO_PORT_PA.c
 * Version      : 1.00
 * Device(s)    : 
 * Tool-Chain   : 
@@ -53,9 +53,9 @@ Includes   <System Includes> , "Project Includes"
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD
+* Function Name: R_PG_IO_PORT_Set_PA
 *
 * Description  : I/Oポートの設定
 *
@@ -68,13 +68,13 @@ Includes   <System Includes> , "Project Includes"
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD(void)
+bool R_PG_IO_PORT_Set_PA(void)
 {
 	bool res;
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_0,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_0,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -82,8 +82,8 @@ bool R_PG_IO_PORT_Set_PD(void)
 	}
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_1,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_1,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -91,8 +91,8 @@ bool R_PG_IO_PORT_Set_PD(void)
 	}
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_2,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_2,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -100,8 +100,8 @@ bool R_PG_IO_PORT_Set_PD(void)
 	}
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_3,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_3,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -109,8 +109,8 @@ bool R_PG_IO_PORT_Set_PD(void)
 	}
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_4,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_4,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -118,8 +118,8 @@ bool R_PG_IO_PORT_Set_PD(void)
 	}
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_5,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_5,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -127,8 +127,8 @@ bool R_PG_IO_PORT_Set_PD(void)
 	}
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_6,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_6,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -136,8 +136,8 @@ bool R_PG_IO_PORT_Set_PD(void)
 	}
 
 	res = R_IO_PORT_Set(
-		PDL_IO_PORT_D_7,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_7,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 	if( !res ){
@@ -152,38 +152,9 @@ bool R_PG_IO_PORT_Set_PD(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD0(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA0(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD0
-*
-* Description  : I/Oポート(1端子)の設定
-*
-* Arguments    : なし
-*
-* Return Value : true  : 設定が正しく行われた場合
-*              : false : 設定に失敗した場合
-*
-* Calling Functions : R_IO_PORT_Set
-*
-* Details      : 詳細についてはリファレンスマニュアルを参照してください。
-******************************************************************************/
-bool R_PG_IO_PORT_Set_PD0(void)
-{
-	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_0,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
-	);
-
-}
-
-/******************************************************************************
-* ID           : 
-*
-* Include      : 
-*
-* Declaration  : bool R_PG_IO_PORT_Set_PD1(void)
-*
-* Function Name: R_PG_IO_PORT_Set_PD1
+* Function Name: R_PG_IO_PORT_Set_PA0
 *
 * Description  : I/Oポート(1端子)の設定
 *
@@ -196,11 +167,11 @@ bool R_PG_IO_PORT_Set_PD0(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD1(void)
+bool R_PG_IO_PORT_Set_PA0(void)
 {
 	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_1,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_0,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 }
@@ -210,9 +181,9 @@ bool R_PG_IO_PORT_Set_PD1(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD2(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA1(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD2
+* Function Name: R_PG_IO_PORT_Set_PA1
 *
 * Description  : I/Oポート(1端子)の設定
 *
@@ -225,11 +196,11 @@ bool R_PG_IO_PORT_Set_PD1(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD2(void)
+bool R_PG_IO_PORT_Set_PA1(void)
 {
 	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_2,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_1,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 }
@@ -239,9 +210,9 @@ bool R_PG_IO_PORT_Set_PD2(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD3(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA2(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD3
+* Function Name: R_PG_IO_PORT_Set_PA2
 *
 * Description  : I/Oポート(1端子)の設定
 *
@@ -254,11 +225,11 @@ bool R_PG_IO_PORT_Set_PD2(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD3(void)
+bool R_PG_IO_PORT_Set_PA2(void)
 {
 	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_3,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_2,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 }
@@ -268,9 +239,9 @@ bool R_PG_IO_PORT_Set_PD3(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD4(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA3(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD4
+* Function Name: R_PG_IO_PORT_Set_PA3
 *
 * Description  : I/Oポート(1端子)の設定
 *
@@ -283,11 +254,11 @@ bool R_PG_IO_PORT_Set_PD3(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD4(void)
+bool R_PG_IO_PORT_Set_PA3(void)
 {
 	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_4,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_3,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 }
@@ -297,9 +268,9 @@ bool R_PG_IO_PORT_Set_PD4(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD5(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA4(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD5
+* Function Name: R_PG_IO_PORT_Set_PA4
 *
 * Description  : I/Oポート(1端子)の設定
 *
@@ -312,11 +283,11 @@ bool R_PG_IO_PORT_Set_PD4(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD5(void)
+bool R_PG_IO_PORT_Set_PA4(void)
 {
 	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_5,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_4,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 }
@@ -326,9 +297,9 @@ bool R_PG_IO_PORT_Set_PD5(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD6(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA5(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD6
+* Function Name: R_PG_IO_PORT_Set_PA5
 *
 * Description  : I/Oポート(1端子)の設定
 *
@@ -341,11 +312,11 @@ bool R_PG_IO_PORT_Set_PD5(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD6(void)
+bool R_PG_IO_PORT_Set_PA5(void)
 {
 	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_6,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_5,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 }
@@ -355,9 +326,9 @@ bool R_PG_IO_PORT_Set_PD6(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Set_PD7(void)
+* Declaration  : bool R_PG_IO_PORT_Set_PA6(void)
 *
-* Function Name: R_PG_IO_PORT_Set_PD7
+* Function Name: R_PG_IO_PORT_Set_PA6
 *
 * Description  : I/Oポート(1端子)の設定
 *
@@ -370,11 +341,11 @@ bool R_PG_IO_PORT_Set_PD6(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Set_PD7(void)
+bool R_PG_IO_PORT_Set_PA6(void)
 {
 	return R_IO_PORT_Set(
-		PDL_IO_PORT_D_7,
-		PDL_IO_PORT_INPUT | PDL_IO_PORT_PULL_UP_ON
+		PDL_IO_PORT_A_6,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
 	);
 
 }
@@ -384,9 +355,38 @@ bool R_PG_IO_PORT_Set_PD7(void)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Set_PA7(void)
 *
-* Function Name: R_PG_IO_PORT_Read_PD
+* Function Name: R_PG_IO_PORT_Set_PA7
+*
+* Description  : I/Oポート(1端子)の設定
+*
+* Arguments    : なし
+*
+* Return Value : true  : 設定が正しく行われた場合
+*              : false : 設定に失敗した場合
+*
+* Calling Functions : R_IO_PORT_Set
+*
+* Details      : 詳細についてはリファレンスマニュアルを参照してください。
+******************************************************************************/
+bool R_PG_IO_PORT_Set_PA7(void)
+{
+	return R_IO_PORT_Set(
+		PDL_IO_PORT_A_7,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS | PDL_IO_PORT_DRIVE_HIGH
+	);
+
+}
+
+/******************************************************************************
+* ID           : 
+*
+* Include      : 
+*
+* Declaration  : bool R_PG_IO_PORT_Read_PA(uint8_t * data)
+*
+* Function Name: R_PG_IO_PORT_Read_PA
 *
 * Description  : I/Oポートレジスタからの読み出し
 *
@@ -399,12 +399,12 @@ bool R_PG_IO_PORT_Set_PD7(void)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D,
+		PDL_IO_PORT_A,
 		data
 	);
 
@@ -415,9 +415,9 @@ bool R_PG_IO_PORT_Read_PD(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD0(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA0(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD0
+* Function Name: R_PG_IO_PORT_Read_PA0
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -430,12 +430,12 @@ bool R_PG_IO_PORT_Read_PD(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD0(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA0(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_0,
+		PDL_IO_PORT_A_0,
 		data
 	);
 
@@ -446,9 +446,9 @@ bool R_PG_IO_PORT_Read_PD0(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD1(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA1(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD1
+* Function Name: R_PG_IO_PORT_Read_PA1
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -461,12 +461,12 @@ bool R_PG_IO_PORT_Read_PD0(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD1(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA1(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_1,
+		PDL_IO_PORT_A_1,
 		data
 	);
 
@@ -477,9 +477,9 @@ bool R_PG_IO_PORT_Read_PD1(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD2(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA2(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD2
+* Function Name: R_PG_IO_PORT_Read_PA2
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -492,12 +492,12 @@ bool R_PG_IO_PORT_Read_PD1(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD2(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA2(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_2,
+		PDL_IO_PORT_A_2,
 		data
 	);
 
@@ -508,9 +508,9 @@ bool R_PG_IO_PORT_Read_PD2(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD3(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA3(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD3
+* Function Name: R_PG_IO_PORT_Read_PA3
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -523,12 +523,12 @@ bool R_PG_IO_PORT_Read_PD2(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD3(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA3(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_3,
+		PDL_IO_PORT_A_3,
 		data
 	);
 
@@ -539,9 +539,9 @@ bool R_PG_IO_PORT_Read_PD3(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD4(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA4(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD4
+* Function Name: R_PG_IO_PORT_Read_PA4
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -554,12 +554,12 @@ bool R_PG_IO_PORT_Read_PD3(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD4(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA4(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_4,
+		PDL_IO_PORT_A_4,
 		data
 	);
 
@@ -570,9 +570,9 @@ bool R_PG_IO_PORT_Read_PD4(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD5(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA5(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD5
+* Function Name: R_PG_IO_PORT_Read_PA5
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -585,12 +585,12 @@ bool R_PG_IO_PORT_Read_PD4(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD5(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA5(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_5,
+		PDL_IO_PORT_A_5,
 		data
 	);
 
@@ -601,9 +601,9 @@ bool R_PG_IO_PORT_Read_PD5(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD6(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA6(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD6
+* Function Name: R_PG_IO_PORT_Read_PA6
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -616,12 +616,12 @@ bool R_PG_IO_PORT_Read_PD5(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD6(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA6(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_6,
+		PDL_IO_PORT_A_6,
 		data
 	);
 
@@ -632,9 +632,9 @@ bool R_PG_IO_PORT_Read_PD6(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Read_PD7(uint8_t * data)
+* Declaration  : bool R_PG_IO_PORT_Read_PA7(uint8_t * data)
 *
-* Function Name: R_PG_IO_PORT_Read_PD7
+* Function Name: R_PG_IO_PORT_Read_PA7
 *
 * Description  : I/Oポートレジスタからのビット読み出し
 *
@@ -647,12 +647,12 @@ bool R_PG_IO_PORT_Read_PD6(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Read_PD7(uint8_t * data)
+bool R_PG_IO_PORT_Read_PA7(uint8_t * data)
 {
 	if( data == 0 ){ return false; }
 
 	return R_IO_PORT_Read(
-		PDL_IO_PORT_D_7,
+		PDL_IO_PORT_A_7,
 		data
 	);
 
@@ -663,9 +663,9 @@ bool R_PG_IO_PORT_Read_PD7(uint8_t * data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD
+* Function Name: R_PG_IO_PORT_Write_PA
 *
 * Description  : I/Oポートデータレジスタへの書き込み
 *
@@ -678,10 +678,10 @@ bool R_PG_IO_PORT_Read_PD7(uint8_t * data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD(uint8_t data)
+bool R_PG_IO_PORT_Write_PA(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D,
+		PDL_IO_PORT_A,
 		data
 	);
 
@@ -692,9 +692,9 @@ bool R_PG_IO_PORT_Write_PD(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD0(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA0(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD0
+* Function Name: R_PG_IO_PORT_Write_PA0
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -707,10 +707,10 @@ bool R_PG_IO_PORT_Write_PD(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD0(uint8_t data)
+bool R_PG_IO_PORT_Write_PA0(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_0,
+		PDL_IO_PORT_A_0,
 		data
 	);
 
@@ -721,9 +721,9 @@ bool R_PG_IO_PORT_Write_PD0(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD1(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA1(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD1
+* Function Name: R_PG_IO_PORT_Write_PA1
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -736,10 +736,10 @@ bool R_PG_IO_PORT_Write_PD0(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD1(uint8_t data)
+bool R_PG_IO_PORT_Write_PA1(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_1,
+		PDL_IO_PORT_A_1,
 		data
 	);
 
@@ -750,9 +750,9 @@ bool R_PG_IO_PORT_Write_PD1(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD2(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA2(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD2
+* Function Name: R_PG_IO_PORT_Write_PA2
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -765,10 +765,10 @@ bool R_PG_IO_PORT_Write_PD1(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD2(uint8_t data)
+bool R_PG_IO_PORT_Write_PA2(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_2,
+		PDL_IO_PORT_A_2,
 		data
 	);
 
@@ -779,9 +779,9 @@ bool R_PG_IO_PORT_Write_PD2(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD3(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA3(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD3
+* Function Name: R_PG_IO_PORT_Write_PA3
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -794,10 +794,10 @@ bool R_PG_IO_PORT_Write_PD2(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD3(uint8_t data)
+bool R_PG_IO_PORT_Write_PA3(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_3,
+		PDL_IO_PORT_A_3,
 		data
 	);
 
@@ -808,9 +808,9 @@ bool R_PG_IO_PORT_Write_PD3(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD4(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA4(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD4
+* Function Name: R_PG_IO_PORT_Write_PA4
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -823,10 +823,10 @@ bool R_PG_IO_PORT_Write_PD3(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD4(uint8_t data)
+bool R_PG_IO_PORT_Write_PA4(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_4,
+		PDL_IO_PORT_A_4,
 		data
 	);
 
@@ -837,9 +837,9 @@ bool R_PG_IO_PORT_Write_PD4(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD5(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA5(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD5
+* Function Name: R_PG_IO_PORT_Write_PA5
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -852,10 +852,10 @@ bool R_PG_IO_PORT_Write_PD4(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD5(uint8_t data)
+bool R_PG_IO_PORT_Write_PA5(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_5,
+		PDL_IO_PORT_A_5,
 		data
 	);
 
@@ -866,9 +866,9 @@ bool R_PG_IO_PORT_Write_PD5(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD6(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA6(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD6
+* Function Name: R_PG_IO_PORT_Write_PA6
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -881,10 +881,10 @@ bool R_PG_IO_PORT_Write_PD5(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD6(uint8_t data)
+bool R_PG_IO_PORT_Write_PA6(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_6,
+		PDL_IO_PORT_A_6,
 		data
 	);
 
@@ -895,9 +895,9 @@ bool R_PG_IO_PORT_Write_PD6(uint8_t data)
 *
 * Include      : 
 *
-* Declaration  : bool R_PG_IO_PORT_Write_PD7(uint8_t data)
+* Declaration  : bool R_PG_IO_PORT_Write_PA7(uint8_t data)
 *
-* Function Name: R_PG_IO_PORT_Write_PD7
+* Function Name: R_PG_IO_PORT_Write_PA7
 *
 * Description  : I/Oポートデータレジスタへのビット書き込み
 *
@@ -910,10 +910,10 @@ bool R_PG_IO_PORT_Write_PD6(uint8_t data)
 *
 * Details      : 詳細についてはリファレンスマニュアルを参照してください。
 ******************************************************************************/
-bool R_PG_IO_PORT_Write_PD7(uint8_t data)
+bool R_PG_IO_PORT_Write_PA7(uint8_t data)
 {
 	return R_IO_PORT_Write(
-		PDL_IO_PORT_D_7,
+		PDL_IO_PORT_A_7,
 		data
 	);
 

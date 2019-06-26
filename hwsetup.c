@@ -40,6 +40,8 @@ R_PG_IO_PORT_Set_PB();
 R_PG_Timer_Set_CMT_U0_C0();//CMT0設定
 R_PG_Timer_StartCount_CMT_U0_C0();//CMT0割込みタイマ動作開始
 
+R_PG_SCI_Set_C2();
+
 R_PG_SCI_Set_C0();//I2C設定
 senddata_HW[0] = 0x0f;
 senddata_HW[1] = 0x00;
