@@ -55,7 +55,7 @@ init_SCI1(RATE_115200);
 
 R_PG_ADC_12_Set_S12AD0();//AD変換設定
 
-initFlash();//データフラッシュ初期化
+//initFlash();//データフラッシュ初期化
 
 R_PG_Timer_Set_MTU_U0_C0();
 R_PG_Timer_Set_MTU_U0_C1();
