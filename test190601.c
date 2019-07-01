@@ -30,10 +30,10 @@ while(1){
 
 switch( pattern ){
 	case 0:
-			senddata[0] = 0x00, senddata[1] = 0x00;//データ読む
+			/*senddata[0] = 0x00, senddata[1] = 0x00;//データ読む
 			R_PG_SCI_I2CMode_Send_C0(0,0xa0,senddata,2);//I2C送信_ビット幅、アドレス、内容、送る数
 			R_PG_SCI_I2CMode_Receive_C0(0,0xa1,receivedata,1);
-			eep_data = receivedata[0];
+			eep_data = receivedata[0];*/
 			R_PG_IO_PORT_Write_P5(0xf);
 			gyro_start();
 			pattern = 1;
@@ -281,38 +281,45 @@ void Cmt0IntFunc(void){//1ms_timer
 }*/
 void gyro_start( void )
 {
-	unsigned char data_tr[ 2 ];
-	unsigned char data_re[ 2 ];
+	unsigned char data_tr[ 3 ];
+	unsigned char data_re[ 3 ];
+	unsigned short j;
 	
 	data_tr[0]  = 0x6b;
 	data_tr[1]  = 0x80;//0x00
 	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
 	R_PG_IO_PORT_Write_P5(0xf);
+	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x1a;
 	data_tr[1]  = 0x00;
 	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
 	R_PG_IO_PORT_Write_P5(0xf);
+	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x1b;
 	data_tr[1]  = 0x18;
 	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
 	R_PG_IO_PORT_Write_P5(0xf);
+	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x1c;
 	data_tr[1]  = 0x10;
 	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
 	R_PG_IO_PORT_Write_P5(0xf);
+	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x68;
 	data_tr[1]  = 0x07;
 	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
 	R_PG_IO_PORT_Write_P5(0xf);
+	for( j=0; j<10000; j++ );
+	
 	/*
 	data_tr[0] = 0x37;
 	data_tr[1] = 0x02;

@@ -36,7 +36,7 @@
 * Description  : 
 * Limitations  : 
 ******************************************************************************
-* History : 30.06.2019 Version Description
+* History : 01.07.2019 Version Description
 *         :   
 ******************************************************************************/
 
@@ -85,8 +85,8 @@ bool R_PG_SCI_Set_C2(void)
 
 	return R_SCI_Create(
 		2,
-		PDL_SCI_SYNC | PDL_SCI_TX_CONNECTED | PDL_SCI_RX_CONNECTED | PDL_SCI_SPI_MODE | PDL_SCI_MSB_FIRST | PDL_SCI_INVERSION_OFF | PDL_SCI_CLK_INT_OUT | PDL_SCI_SPI_SS_DISABLE | PDL_SCI_CLOCK_PHASE_DELAYED,
-		BIT_31 | PDL_SCI_PCLK_DIV_1 | 23 | (500000 & 0x00FFFF00ul),
+		PDL_SCI_SYNC | PDL_SCI_TX_CONNECTED | PDL_SCI_RX_CONNECTED | PDL_SCI_SPI_MODE | PDL_SCI_MSB_FIRST | PDL_SCI_INVERSION_OFF | PDL_SCI_CLK_INT_OUT | PDL_SCI_SPI_SS_DISABLE,
+		BIT_31 | PDL_SCI_PCLK_DIV_1 | 11 | (1000000 & 0x00FFFF00ul),
 		0,
 		0
 	);

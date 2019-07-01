@@ -42,14 +42,14 @@ R_PG_Timer_StartCount_CMT_U0_C0();//CMT0割込みタイマ動作開始
 
 R_PG_SCI_Set_C2();
 
-R_PG_SCI_Set_C0();//I2C設定
+/*R_PG_SCI_Set_C0();//I2C設定
 senddata_HW[0] = 0x0f;
 senddata_HW[1] = 0x00;
 senddata_HW[2] = 0x10;
 senddata_HW[3] = 0x03;
 senddata_HW[4] = 0x11;
 senddata_HW[5] = 0x00;
-R_PG_SCI_I2CMode_Send_C0(0,0xd2,senddata_HW,6);//I2C送信_ビット幅、アドレス、内容
+R_PG_SCI_I2CMode_Send_C0(0,0xd2,senddata_HW,6);//I2C送信_ビット幅、アドレス、内容*/
 
 init_SCI1(RATE_115200);
 
