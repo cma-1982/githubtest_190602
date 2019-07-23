@@ -35,8 +35,10 @@ switch( pattern ){
 			R_PG_SCI_I2CMode_Receive_C0(0,0xa1,receivedata,1);
 			eep_data = receivedata[0];*/
 			R_PG_IO_PORT_Write_P5(0xf);
-			gyro_start();
-			pattern = 1;
+			R_PG_IO_PORT_Write_PA(0xf);
+			
+			//gyro_start();
+			//pattern = 1;
 				
 			//initFlash();
 	break;
@@ -207,6 +209,8 @@ void Cmt0IntFunc(void){//1ms_timer
 	cnt2++;
 	cnt3++;
 	cnt_flash++;
+	
+	R_PG_IO_PORT_Write_PA(0xff);//‚k‚d‚c“_“”
 	
 	R_PG_IO_PORT_Read_P55(&sw01);//ƒXƒCƒbƒ`“ü—Í
 	
