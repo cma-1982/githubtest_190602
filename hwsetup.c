@@ -37,6 +37,10 @@ R_PG_Clock_WaitSet(0.01);//クロック設定
 R_PG_IO_PORT_Set_P5();//ＩＯポート初期化
 R_PG_IO_PORT_Set_PA();
 R_PG_IO_PORT_Set_PB();
+R_PG_IO_PORT_Set_PD();
+
+R_PG_Timer_Set_CMT_U0_C0();//CMT0設定
+R_PG_Timer_StartCount_CMT_U0_C0();//CMT0割込みタイマ動作開始
 
 R_PG_SCI_Set_C2();
 
@@ -62,6 +66,5 @@ R_PG_Timer_Set_MTU_U0_C3();
 R_PG_Timer_Set_MTU_U0_C4();
 R_PG_Timer_SynchronouslyStartCount_MTU_U0(1,1,1,1,1);//PWM、エンコーダカウント動作開始
 
-R_PG_Timer_Set_CMT_U0_C0();//CMT0設定
-R_PG_Timer_StartCount_CMT_U0_C0();//CMT0割込みタイマ動作開始
+
 }

@@ -8,6 +8,8 @@ void 		spi_write( unsigned char data );
 unsigned char	who_am_i_read( void );
 void		gyro_start( void );
 void		gyro_read( void );
+void		ui_ctrl( void );
+
 
 short		pattern;
 short		cnt1,cnt2,cnt3;
@@ -16,7 +18,8 @@ signed int	pwm1,pwm2,pwm3,pwm4;
 short		gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z;
 int		gx;
 char		eep_data;
-char		sw01;
+char		dip, stsw, upsw, dnsw;
+short		led;
 short		result[14];
 char		senddata[5], receivedata[5];
 int		enc1, enc2;
@@ -35,10 +38,9 @@ switch( pattern ){
 			R_PG_SCI_I2CMode_Receive_C0(0,0xa1,receivedata,1);
 			eep_data = receivedata[0];*/
 			R_PG_IO_PORT_Write_P5(0xf);
-			R_PG_IO_PORT_Write_PA(0xf);
 			
 			//gyro_start();
-			//pattern = 1;
+			pattern = 1;
 				
 			//initFlash();
 	break;
@@ -46,9 +48,10 @@ switch( pattern ){
 	case 1:
 		//if(cnt2>=100)printf( "gyro=%6d, an00=%4d, an01=%4d, an02=%4d, an03=%4d, an04=%4d, an05=%4d, an06=%4d, an07=%4d, sw=%4d,  enc1=%8d, enc2=%8d, eeprom=%8d\r",gyro1,an00,an01,an02,an03,an04,an05,an06,an07,sw01,enc1,enc2,eep_data),cnt2 = 0;
 		//if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
-		if(cnt2>=100)printf( "pattern = %2d, gyroX = %6d, gyroY = %6d, gyroZ = %6d, accX = %6d, accY = %6d, accZ = %6d\r", pattern, gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z ), cnt2 = 0;
-		
-		if(!sw01&&cnt3>=500) {
+		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
+		led = dip;
+		//R_PG_IO_PORT_Write_PA(0x0f);
+		if(stsw&&cnt3>=500) {
 			/*senddata[0] = 0x00, senddata[1] = 0x00;//データ読む
 			R_PG_SCI_I2CMode_Send_C0(0,0xa0,senddata,2);//I2C送信_ビット幅、アドレス、内容、送る数
 			R_PG_SCI_I2CMode_Receive_C0(0,0xa1,receivedata,1);
@@ -64,14 +67,9 @@ switch( pattern ){
 	break;
 	
 	case 2:
-		if	(cnt1<=100)R_PG_IO_PORT_Write_P5(0x1);
-		else if	(cnt1<=200)R_PG_IO_PORT_Write_P5(0x0);
-		else if	(cnt1<=300)R_PG_IO_PORT_Write_P5(0x1);
-		else if	(cnt1<=400)R_PG_IO_PORT_Write_P5(0x0);
-		else	cnt1 = 0;
-		
-		if(!sw01&&cnt3>=500) pattern = 3, cnt3 = 0;
-		
+		if(stsw&&cnt3>=500) pattern = 3, cnt3 = 0;
+		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
+		led = 0x0f;
 		if(cnt3>=6000){
 			cnt3 = 0;
 		} else if (cnt3>=5000) {
@@ -94,14 +92,9 @@ switch( pattern ){
 	break;
 	
 	case 3:
-		if	(cnt1<=100)R_PG_IO_PORT_Write_P5(0x3);
-		else if	(cnt1<=200)R_PG_IO_PORT_Write_P5(0x0);
-		else if	(cnt1<=300)R_PG_IO_PORT_Write_P5(0x3);
-		else if	(cnt1<=400)R_PG_IO_PORT_Write_P5(0x0);
-		else	cnt1 = 0;
-		
-		if(!sw01&&cnt3>=500) pattern = 4, cnt3 = 0;
-		
+		if(stsw&&cnt3>=500) pattern = 4, cnt3 = 0;
+		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
+		led = 0xf0;
 		if(cnt3>=6000){
 			cnt3 = 0;
 		} else if (cnt3>=5000) {
@@ -124,14 +117,9 @@ switch( pattern ){
 	break;
 	
 	case 4:
-		if	(cnt1<=100)R_PG_IO_PORT_Write_P5(0x7);
-		else if	(cnt1<=200)R_PG_IO_PORT_Write_P5(0x0);
-		else if	(cnt1<=300)R_PG_IO_PORT_Write_P5(0x7);
-		else if	(cnt1<=400)R_PG_IO_PORT_Write_P5(0x0);
-		else	cnt1 = 0;
-		
-		if(!sw01&&cnt3>=500) pattern = 5, cnt3 = 0;
-		
+		if(stsw&&cnt3>=500) pattern = 5, cnt3 = 0;
+		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
+		led = 0xcc;
 		if(cnt3>=6000){
 			cnt3 = 0;
 		} else if (cnt3>=5000) {
@@ -154,14 +142,9 @@ switch( pattern ){
 	break;
 	
 	case 5:
-		if	(cnt1<=100)R_PG_IO_PORT_Write_P5(0xf);
-		else if	(cnt1<=200)R_PG_IO_PORT_Write_P5(0x0);
-		else if	(cnt1<=300)R_PG_IO_PORT_Write_P5(0xf);
-		else if	(cnt1<=400)R_PG_IO_PORT_Write_P5(0x0);
-		else	cnt1 = 0;
-		
-		if(!sw01&&cnt3>=500) pattern = 1, cnt3 = 0;
-		
+		if(stsw&&cnt3>=500) pattern = 6, cnt3 = 0;
+		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
+		led = 0x33;
 		if(cnt3>=6000){
 			cnt3 = 0;
 		} else if (cnt3>=5000) {
@@ -183,9 +166,19 @@ switch( pattern ){
 	break;
 	
 	case 6:
+		if(stsw&&cnt3>=500) pattern = 1, cnt3 = 0;
+		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
+		led = 0xff;
+		pwm1 = 0;
+		pwm2 = 0;
+		pwm3 = 0;
+		pwm4 = 0;
+	break;
+	
+	case 7:
 		if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
 		
-		if(!sw01&&cnt3>=2000){
+		if(stsw&&cnt3>=2000){
 			pattern = 1;
 			cnt3 = 0;
 		} else {
@@ -210,9 +203,9 @@ void Cmt0IntFunc(void){//1ms_timer
 	cnt3++;
 	cnt_flash++;
 	
-	R_PG_IO_PORT_Write_PA(0xff);//ＬＥＤ点灯
+	ui_ctrl();
 	
-	R_PG_IO_PORT_Read_P55(&sw01);//スイッチ入力
+	//R_PG_IO_PORT_Write_PA(0xff);//ＬＥＤ点灯
 	
 	if( pwm1 >= 0 ) {
 		b1 = 4798 *  pwm1 / 100;
@@ -257,7 +250,7 @@ void Cmt0IntFunc(void){//1ms_timer
 	R_PG_Timer_GetCounterValue_MTU_U0_C1( & enc1 );
 	R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc2 );
 
-	gyro_read();
+	//gyro_read();
 
 	R_PG_ADC_12_StartConversionSW_S12AD0();//AD変換開始
 	R_PG_ADC_12_GetResult_S12AD0(result);//AD変換値をレジスタに格納
@@ -270,6 +263,26 @@ void Cmt0IntFunc(void){//1ms_timer
 	an06 = result[6];
 	an07 = result[7];
 	R_PG_ADC_12_StopConversion_S12AD0();
+}
+
+void ui_ctrl( void )
+{
+	char a,b,c,d,e,f,g,h;
+	
+	R_PG_IO_PORT_Read_PD0(&a);
+	R_PG_IO_PORT_Read_PD1(&b);
+	R_PG_IO_PORT_Read_PD2(&c);
+	R_PG_IO_PORT_Read_PD3(&d);
+	dip = !d + (!c*2) + (!b*4) + (!a*8);
+	
+	R_PG_IO_PORT_Read_PD6(&e);
+	R_PG_IO_PORT_Read_PD5(&f);
+	R_PG_IO_PORT_Read_PD4(&g);
+	stsw = !e;
+	upsw = !f;
+	dnsw = !g;
+	
+	R_PG_IO_PORT_Write_PA(~led);
 }
 
 /*void spi_write( unsigned char data )
