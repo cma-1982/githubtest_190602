@@ -9,11 +9,12 @@ unsigned char	who_am_i_read( void );
 void		gyro_start( void );
 void		gyro_read( void );
 void		ui_ctrl( void );
-
+void		pwm_ctrl( void );
 
 short		pattern;
 short		cnt1,cnt2,cnt3;
-short		an00,an01,an02,an03,an04,an05,an06,an07;
+char		timer4k, sensor_out;
+short		sen1L,sen2L,sen3L,sen4L,sen1H,sen2H,sen3H,sen4H,sen1,sen2,sen3,sen4,batad,VR1,VR2;
 signed int	pwm1,pwm2,pwm3,pwm4;
 short		gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z;
 int		gx;
@@ -37,20 +38,22 @@ switch( pattern ){
 			R_PG_SCI_I2CMode_Send_C0(0,0xa0,senddata,2);//I2C送信_ビット幅、アドレス、内容、送る数
 			R_PG_SCI_I2CMode_Receive_C0(0,0xa1,receivedata,1);
 			eep_data = receivedata[0];*/
-			R_PG_IO_PORT_Write_P5(0xf);
+			//R_PG_IO_PORT_Write_P5(0xf);
 			
 			//gyro_start();
+			timer4k = 0;
 			pattern = 1;
 				
 			//initFlash();
 	break;
 	
 	case 1:
-		//if(cnt2>=100)printf( "gyro=%6d, an00=%4d, an01=%4d, an02=%4d, an03=%4d, an04=%4d, an05=%4d, an06=%4d, an07=%4d, sw=%4d,  enc1=%8d, enc2=%8d, eeprom=%8d\r",gyro1,an00,an01,an02,an03,an04,an05,an06,an07,sw01,enc1,enc2,eep_data),cnt2 = 0;
+		if(cnt2>=100)printf( "sen1=%4d, sen2=%4d, sen3=%4d, sen4=%4d, bat=%4d, vr1=%4d, vr2=%4d, enc1=%8d, enc2=%8d\r",sen1,sen2,sen3,sen4,batad,VR1,VR2,enc1,enc2),cnt2 = 0;
 		//if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
-		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
+		//if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
 		led = dip;
-		//R_PG_IO_PORT_Write_PA(0x0f);
+		sensor_out = 1;
+		R_PG_IO_PORT_Write_P24(1);
 		if(stsw&&cnt3>=500) {
 			/*senddata[0] = 0x00, senddata[1] = 0x00;//データ読む
 			R_PG_SCI_I2CMode_Send_C0(0,0xa0,senddata,2);//I2C送信_ビット幅、アドレス、内容、送る数
@@ -70,6 +73,7 @@ switch( pattern ){
 		if(stsw&&cnt3>=500) pattern = 3, cnt3 = 0;
 		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
 		led = 0x0f;
+		R_PG_IO_PORT_Write_P24(0);
 		if(cnt3>=6000){
 			cnt3 = 0;
 		} else if (cnt3>=5000) {
@@ -85,7 +89,7 @@ switch( pattern ){
 		} else {
 			pwm1 =  0;
 		}
-		
+		sensor_out = 0;
 		pwm2 = 0;
 		pwm3 = 0;
 		pwm4 = 0;
@@ -196,16 +200,65 @@ break;
 	
 }*/
 
-void Cmt0IntFunc(void){//1ms_timer
+void Cmt0IntFunc(void){//0.25ms_timer
+	
+	timer4k++;
+	switch( timer4k ){
+		
+		case 1:
+			R_PG_ADC_12_StartConversionSW_S12AD0();//AD変換開始
+			R_PG_ADC_12_GetResult_S12AD0(result);//AD変換値をレジスタに格納
+			sen4H = result[1];
+			sen3H = result[2];
+			sen2H = result[3];
+			sen1H = result[4];
+			batad = result[5];
+			VR1   = result[6];
+			VR2   = result[7];
+			R_PG_ADC_12_StopConversion_S12AD0();
+			R_PG_IO_PORT_Write_P24(1);
+			
+			sen1 = sen1H - sen1L;
+			sen2 = sen2H - sen2L;
+			sen3 = sen3H - sen3L;
+			sen4 = sen4H - sen4L;
+			
+			cnt1++;
+			cnt2++;
+			cnt3++;
+			cnt_flash++;
+			ui_ctrl();
+			R_PG_Timer_GetCounterValue_MTU_U0_C1( & enc1 );
+			R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc2 );
+		break;
+		
+		case 2:
+			//servoctrl?
+			pwm_ctrl();
+		break;
+
+		case 3:
+			//gyro_read();
+		break;
+		
+		case 4:
+			R_PG_ADC_12_StartConversionSW_S12AD0();//AD変換開始
+			R_PG_ADC_12_GetResult_S12AD0(result);//AD変換値をレジスタに格納
+			sen4L = result[1];
+			sen3L = result[2];
+			sen2L = result[3];
+			sen1L = result[4];
+			R_PG_ADC_12_StopConversion_S12AD0();
+			//if(sensor_out)R_PG_IO_PORT_Write_P24(0x01);
+			R_PG_IO_PORT_Write_P24(1);
+			timer4k = 0;
+		break;
+	}
+}
+
+void pwm_ctrl( void )
+{
 	signed int b1,b2,b3,b4;
-	cnt1++;
-	cnt2++;
-	cnt3++;
-	cnt_flash++;
-	
-	ui_ctrl();
-	
-	//R_PG_IO_PORT_Write_PA(0xff);//ＬＥＤ点灯
 	
 	if( pwm1 >= 0 ) {
 		b1 = 4798 *  pwm1 / 100;
@@ -216,7 +269,7 @@ void Cmt0IntFunc(void){//1ms_timer
 		R_PG_Timer_SetTGR_B_MTU_U0_C0(b1);//PWM出力1
 		R_PG_IO_PORT_Write_PB4(0);
 	}
-
+	
 	if( pwm2 >= 0 ) {
 		b2 = 4798 *  pwm2 / 100;
 		R_PG_Timer_SetTGR_D_MTU_U0_C0(b2);//PWM出力2
@@ -226,7 +279,7 @@ void Cmt0IntFunc(void){//1ms_timer
 		R_PG_Timer_SetTGR_D_MTU_U0_C0(b2);//PWM出力2
 		R_PG_IO_PORT_Write_PB2(0);
 	}
-
+	
 	if( pwm3 >= 0 ) {
 		b3 = 4798 *  pwm3 / 100;
 		R_PG_Timer_SetTGR_B_MTU_U0_C3(b3);//PWM出力3
@@ -236,7 +289,7 @@ void Cmt0IntFunc(void){//1ms_timer
 		R_PG_Timer_SetTGR_B_MTU_U0_C3(b3);//PWM出力3
 		R_PG_IO_PORT_Write_PB6(0);
 	}
-
+	
 	if( pwm4 >= 0 ) {
 		b4 = 4798 *  pwm4 / 100;
 		R_PG_Timer_SetTGR_D_MTU_U0_C3(b4);//PWM出力4
@@ -246,23 +299,6 @@ void Cmt0IntFunc(void){//1ms_timer
 		R_PG_Timer_SetTGR_D_MTU_U0_C3(b4);//PWM出力4
 		R_PG_IO_PORT_Write_PB7(0);
 	}
-	
-	R_PG_Timer_GetCounterValue_MTU_U0_C1( & enc1 );
-	R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc2 );
-
-	//gyro_read();
-
-	R_PG_ADC_12_StartConversionSW_S12AD0();//AD変換開始
-	R_PG_ADC_12_GetResult_S12AD0(result);//AD変換値をレジスタに格納
-	an00 = result[0];
-	an01 = result[1];
-	an02 = result[2];
-	an03 = result[3];
-	an04 = result[4];
-	an05 = result[5];
-	an06 = result[6];
-	an07 = result[7];
-	R_PG_ADC_12_StopConversion_S12AD0();
 }
 
 void ui_ctrl( void )
