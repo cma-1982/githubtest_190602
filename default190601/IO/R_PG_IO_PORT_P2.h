@@ -9,7 +9,7 @@
 * Version      : 1.00
 * Description  : 
 ******************************************************************************
-* History : 25.07.2019 Version Description
+* History : 26.07.2019 Version Description
 *         :   
 ******************************************************************************/
 
@@ -22,6 +22,7 @@ Includes   <System Includes> , "Project Includes"
 
 bool R_PG_IO_PORT_Set_P2(void);
 bool R_PG_IO_PORT_Set_P24(void);
+bool R_PG_IO_PORT_Set_P25(void);
 bool R_PG_IO_PORT_Read_P2(uint8_t * data);
 bool R_PG_IO_PORT_Read_P20(uint8_t * data);
 bool R_PG_IO_PORT_Read_P21(uint8_t * data);
@@ -33,6 +34,7 @@ bool R_PG_IO_PORT_Read_P26(uint8_t * data);
 bool R_PG_IO_PORT_Read_P27(uint8_t * data);
 bool R_PG_IO_PORT_Write_P2(uint8_t data);
 bool R_PG_IO_PORT_Write_P24(uint8_t data);
+bool R_PG_IO_PORT_Write_P25(uint8_t data);
 
 
 

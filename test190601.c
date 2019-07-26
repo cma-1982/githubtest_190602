@@ -20,10 +20,10 @@ short		gyro_x, gyro_y, gyro_z, acc_x, acc_y, acc_z;
 int		gx;
 char		eep_data;
 char		dip, stsw, upsw, dnsw;
-short		led;
+short		led, sen_pwm;
 short		result[14];
 char		senddata[5], receivedata[5];
-int		enc1, enc2;
+int		enc;
 short		spi_data;
 
 
@@ -41,19 +41,18 @@ switch( pattern ){
 			//R_PG_IO_PORT_Write_P5(0xf);
 			
 			//gyro_start();
-			timer4k = 0;
 			pattern = 1;
 				
 			//initFlash();
 	break;
 	
 	case 1:
-		if(cnt2>=100)printf( "sen1=%4d, sen2=%4d, sen3=%4d, sen4=%4d, bat=%4d, vr1=%4d, vr2=%4d, enc1=%8d, enc2=%8d\r",sen1,sen2,sen3,sen4,batad,VR1,VR2,enc1,enc2),cnt2 = 0;
+		if(cnt2>=100)printf( "sen1=%4d, sen2=%4d, sen3=%4d, sen4=%4d, bat=%4d, vr1=%4d, vr2=%4d, enc=%8d\r",sen1,sen2,sen3,sen4,batad,VR1,VR2,enc),cnt2 = 0;
 		//if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
 		//if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
 		led = dip;
 		sensor_out = 1;
-		R_PG_IO_PORT_Write_P24(1);
+		
 		if(stsw&&cnt3>=500) {
 			/*senddata[0] = 0x00, senddata[1] = 0x00;//データ読む
 			R_PG_SCI_I2CMode_Send_C0(0,0xa0,senddata,2);//I2C送信_ビット幅、アドレス、内容、送る数
@@ -73,7 +72,7 @@ switch( pattern ){
 		if(stsw&&cnt3>=500) pattern = 3, cnt3 = 0;
 		if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
 		led = 0x0f;
-		R_PG_IO_PORT_Write_P24(0);
+		
 		if(cnt3>=6000){
 			cnt3 = 0;
 		} else if (cnt3>=5000) {
@@ -216,20 +215,21 @@ void Cmt0IntFunc(void){//0.25ms_timer
 			VR1   = result[6];
 			VR2   = result[7];
 			R_PG_ADC_12_StopConversion_S12AD0();
-			R_PG_IO_PORT_Write_P24(1);
+			
+			R_PG_IO_PORT_Write_P15(0);
 			
 			sen1 = sen1H - sen1L;
 			sen2 = sen2H - sen2L;
 			sen3 = sen3H - sen3L;
 			sen4 = sen4H - sen4L;
 			
+			
 			cnt1++;
 			cnt2++;
 			cnt3++;
 			cnt_flash++;
 			ui_ctrl();
-			R_PG_Timer_GetCounterValue_MTU_U0_C1( & enc1 );
-			R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc2 );
+			R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc );
 		break;
 		
 		case 2:
@@ -249,8 +249,9 @@ void Cmt0IntFunc(void){//0.25ms_timer
 			sen2L = result[3];
 			sen1L = result[4];
 			R_PG_ADC_12_StopConversion_S12AD0();
-			//if(sensor_out)R_PG_IO_PORT_Write_P24(0x01);
-			R_PG_IO_PORT_Write_P24(1);
+			
+			if(sensor_out)R_PG_IO_PORT_Write_P15(1);
+			
 			timer4k = 0;
 		break;
 	}

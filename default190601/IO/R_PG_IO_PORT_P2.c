@@ -36,7 +36,7 @@
 * Description  : 
 * Limitations  : 
 ******************************************************************************
-* History : 25.07.2019 Version Description
+* History : 26.07.2019 Version Description
 *         :   
 ******************************************************************************/
 
@@ -81,6 +81,15 @@ bool R_PG_IO_PORT_Set_P2(void)
 		return res;
 	}
 
+	res = R_IO_PORT_Set(
+		PDL_IO_PORT_2_5,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS
+	);
+
+	if( !res ){
+		return res;
+	}
+
 	return res;
 }
 
@@ -108,6 +117,35 @@ bool R_PG_IO_PORT_Set_P24(void)
 {
 	return R_IO_PORT_Set(
 		PDL_IO_PORT_2_4,
+		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS
+	);
+
+}
+
+/******************************************************************************
+* ID           : 
+*
+* Include      : 
+*
+* Declaration  : bool R_PG_IO_PORT_Set_P25(void)
+*
+* Function Name: R_PG_IO_PORT_Set_P25
+*
+* Description  : I/Oポート(1端子)の設定
+*
+* Arguments    : なし
+*
+* Return Value : true  : 設定が正しく行われた場合
+*              : false : 設定に失敗した場合
+*
+* Calling Functions : R_IO_PORT_Set
+*
+* Details      : 詳細についてはリファレンスマニュアルを参照してください。
+******************************************************************************/
+bool R_PG_IO_PORT_Set_P25(void)
+{
+	return R_IO_PORT_Set(
+		PDL_IO_PORT_2_5,
 		PDL_IO_PORT_OUTPUT | PDL_IO_PORT_TYPE_CMOS
 	);
 
@@ -445,6 +483,35 @@ bool R_PG_IO_PORT_Write_P24(uint8_t data)
 {
 	return R_IO_PORT_Write(
 		PDL_IO_PORT_2_4,
+		data
+	);
+
+}
+
+/******************************************************************************
+* ID           : 
+*
+* Include      : 
+*
+* Declaration  : bool R_PG_IO_PORT_Write_P25(uint8_t data)
+*
+* Function Name: R_PG_IO_PORT_Write_P25
+*
+* Description  : I/Oポートデータレジスタへのビット書き込み
+*
+* Arguments    : uint8_t data : 書き込む値
+*
+* Return Value : true  : 書き込みに成功した場合
+*              : false : 書き込みに失敗した場合
+*
+* Calling Functions : R_IO_PORT_Write
+*
+* Details      : 詳細についてはリファレンスマニュアルを参照してください。
+******************************************************************************/
+bool R_PG_IO_PORT_Write_P25(uint8_t data)
+{
+	return R_IO_PORT_Write(
+		PDL_IO_PORT_2_5,
 		data
 	);
 
