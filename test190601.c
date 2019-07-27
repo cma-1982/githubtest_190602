@@ -26,6 +26,9 @@ char		senddata[5], receivedata[5];
 int		enc;
 short		spi_data;
 
+int		reg1, reg2, reg3;
+unsigned char 	data_tr_reg[ 3 ];
+unsigned char 	data_re_reg[ 3 ];
 
 void main(void)
 {
@@ -39,8 +42,23 @@ switch( pattern ){
 			R_PG_SCI_I2CMode_Receive_C0(0,0xa1,receivedata,1);
 			eep_data = receivedata[0];*/
 			//R_PG_IO_PORT_Write_P5(0xf);
-			
+
+	data_tr_reg[0]  = 0x37 | 0x80;
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr_reg, data_re_reg, 2);
+	R_PG_IO_PORT_Write_P50(1);
+	
+	reg1 = data_re_reg[1];
+	
 			gyro_start();
+
+	data_tr_reg[0]  = 0x37 | 0x80;
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr_reg, data_re_reg, 2);
+	R_PG_IO_PORT_Write_P50(1);
+	
+	reg2 = data_re_reg[1];
+	
 			pattern = 1;
 				
 			//initFlash();
@@ -50,7 +68,7 @@ switch( pattern ){
 		//if(cnt2>=100)printf( "sen1=%4d, sen2=%4d, sen3=%4d, sen4=%4d, bat=%4d, vr1=%4d, vr2=%4d, enc=%8d\r",sen1,sen2,sen3,sen4,batad,VR1,VR2,enc),cnt2 = 0;
 		//if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
 		//if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
-		if(cnt2>=300)printf( "pattern = %2d, accx = %5d, accy = %5d, accx = %5d, gyrox = %5d, gyroy = %5d, gyroz = %5d,\r", pattern, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z ), cnt2 = 0;
+		if(cnt2>=300)printf( "pattern = %2d, accx = %5d, accy = %5d, accz = %5d, gyrox = %5d, gyroy = %5d, gyroz = %5d, reg1 = %5x, reg2 = %5x,\r", pattern, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, reg1, reg2 ), cnt2 = 0;
 
 		sensor_out = 1;
 		
@@ -347,73 +365,74 @@ void gyro_start( void )
 	unsigned char data_re[ 3 ];
 	unsigned short j;
 	
-	data_tr[0]  = 0x6b;
-	data_tr[1]  = 0x80;//0x00
-	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
-	
-	data_tr[0]  = 0x1a;
+	/*data_tr[0]  = 0x1a;
 	data_tr[1]  = 0x00;
 	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
 	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
 	
-	data_tr[0]  = 0x1b;
-	data_tr[1]  = 0x18;
-	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
+
 	
-	data_tr[0]  = 0x1c;
-	data_tr[1]  = 0x10;
+	data_tr[0]  = 0x23;
+	data_tr[1]  = 0x00;//0xf8
 	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
 	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
+	
+
 	
 	data_tr[0]  = 0x68;
 	data_tr[1]  = 0x07;
 	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
 	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
 	
+	data_tr[0]  = 0x6a;
+	data_tr[1]  = 0x10;
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_IO_PORT_Write_P50(1);*/
+		
+	data_tr[0]  = 0x6b;
+	data_tr[1]  = 0x00;//0x80
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_IO_PORT_Write_P50(1);
 	
 	data_tr[0] = 0x37;
 	data_tr[1] = 0x02;
 	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
 	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
-
-	data_tr[0]  = 0x6a;
-	data_tr[1]  = 0x10;
-	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
 	
-	data_tr[0]  = 0x6c;
+	data_tr[0]  = 0x1a;
 	data_tr[1]  = 0x00;
-	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P50(1);
-	for( j=0; j<10000; j++ );
-	
-	data_tr[0]  = 0x23;
-	data_tr[1]  = 0xf8;//0x00
 	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
 	R_PG_IO_PORT_Write_P50(1);
+	
+	data_tr[0]  = 0x1b;
+	data_tr[1]  = 0x18;
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_IO_PORT_Write_P50(1);
+	
+	data_tr[0]  = 0x1c;
+	data_tr[1]  = 0x10;
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_IO_PORT_Write_P50(1);
+	
+	/*data_tr[0]  = 0x6c;
+	data_tr[1]  = 0x00;
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
+	R_PG_IO_PORT_Write_P50(1);*/
 }
 
 void gyro_read( void )
 {
-	unsigned char data_tr[ 7 ], data_re[ 7 ], low, high;
+	unsigned char data_tr[ 15 ], data_re[ 15 ], low, high;
 	
 	data_tr[0]  = 0x3b | 0x80;
 	data_tr[1]  = 0x3c | 0x80;
@@ -421,9 +440,17 @@ void gyro_read( void )
 	data_tr[3]  = 0x3e | 0x80;
 	data_tr[4]  = 0x3f | 0x80;
 	data_tr[5]  = 0x40 | 0x80;
+	data_tr[6]  = 0x41 | 0x80;
+	data_tr[7]  = 0x42 | 0x80;
+	data_tr[8]  = 0x43 | 0x80;
+	data_tr[9]  = 0x44 | 0x80;
+	data_tr[10] = 0x45 | 0x80;
+	data_tr[11] = 0x46 | 0x80;
+	data_tr[12] = 0x47 | 0x80;
+	data_tr[13] = 0x48 | 0x80;
 	
 	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 7);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 15);
 	R_PG_IO_PORT_Write_P50(1);
 	
 	high = data_re[1];
@@ -438,28 +465,16 @@ void gyro_read( void )
 	low  = data_re[6];
 	acc_z= high << 8 | low;
 	
-	
-	data_tr[0]  = 0x43 | 0x80;
-	data_tr[1]  = 0x44 | 0x80;
-	data_tr[2]  = 0x45 | 0x80;
-	data_tr[3]  = 0x46 | 0x80;
-	data_tr[4]  = 0x47 | 0x80;
-	data_tr[5]  = 0x48 | 0x80;
-	
-	R_PG_IO_PORT_Write_P50(0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 7);
-	R_PG_IO_PORT_Write_P50(1);
-	
-	high = data_re[1];
-	low  = data_re[2];
+	high = data_re[9];
+	low  = data_re[10];
 	gyro_x= high << 8 | low;
 	
-	high = data_re[3];
-	low  = data_re[4];
+	high = data_re[11];
+	low  = data_re[12];
 	gyro_y= high << 8 | low;
 	
-	high = data_re[5];
-	low  = data_re[6];
+	high = data_re[13];
+	low  = data_re[14];
 	gyro_z= high << 8 | low;
 }
 
