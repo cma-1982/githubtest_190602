@@ -12,7 +12,7 @@ void		ui_ctrl( void );
 void		pwm_ctrl( void );
 
 short		pattern;
-short		cnt1,cnt2,cnt3;
+short		cnt1,cnt2,cnt3,cntled;
 char		timer4k, sensor_out;
 short		sen1L,sen2L,sen3L,sen4L,sen1H,sen2H,sen3H,sen4H,sen1,sen2,sen3,sen4,batad,VR1,VR2;
 signed int	pwm1,pwm2,pwm3,pwm4;
@@ -40,18 +40,25 @@ switch( pattern ){
 			eep_data = receivedata[0];*/
 			//R_PG_IO_PORT_Write_P5(0xf);
 			
-			//gyro_start();
+			gyro_start();
 			pattern = 1;
 				
 			//initFlash();
 	break;
 	
 	case 1:
-		if(cnt2>=100)printf( "sen1=%4d, sen2=%4d, sen3=%4d, sen4=%4d, bat=%4d, vr1=%4d, vr2=%4d, enc=%8d\r",sen1,sen2,sen3,sen4,batad,VR1,VR2,enc),cnt2 = 0;
+		//if(cnt2>=100)printf( "sen1=%4d, sen2=%4d, sen3=%4d, sen4=%4d, bat=%4d, vr1=%4d, vr2=%4d, enc=%8d\r",sen1,sen2,sen3,sen4,batad,VR1,VR2,enc),cnt2 = 0;
 		//if(cnt2>=100)printf( "pattern = %2d, eep = %6d\r", pattern, eep_data ),cnt2 = 0;
 		//if(cnt2>=300)printf( "pattern = %2d, DIP = %4x, st = %1d, up = %1d, dn = %1d\r", pattern, dip, stsw, upsw, dnsw ), cnt2 = 0;
-		led = dip;
+		if(cnt2>=300)printf( "pattern = %2d, accx = %5d, accy = %5d, accx = %5d, gyrox = %5d, gyroy = %5d, gyroz = %5d,\r", pattern, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z ), cnt2 = 0;
+
 		sensor_out = 1;
+		
+		     if( cntled < 200 ) led = 0x11;
+		else if( cntled < 400 ) led = 0x22;
+		else if( cntled < 600 ) led = 0x44;
+		else if( cntled < 800 ) led = 0x88;
+		else cntled = 0;
 		
 		if(stsw&&cnt3>=500) {
 			/*senddata[0] = 0x00, senddata[1] = 0x00;//データ読む
@@ -216,7 +223,7 @@ void Cmt0IntFunc(void){//0.25ms_timer
 			VR2   = result[7];
 			R_PG_ADC_12_StopConversion_S12AD0();
 			
-			R_PG_IO_PORT_Write_P15(0);
+			R_PG_IO_PORT_Write_P15(0);//センサ発光ＯＦＦ
 			
 			sen1 = sen1H - sen1L;
 			sen2 = sen2H - sen2L;
@@ -227,9 +234,10 @@ void Cmt0IntFunc(void){//0.25ms_timer
 			cnt1++;
 			cnt2++;
 			cnt3++;
+			cntled++;
 			cnt_flash++;
 			ui_ctrl();
-			R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc );
+			R_PG_Timer_GetCounterValue_MTU_U0_C2( & enc );//エンコーダ値取得
 		break;
 		
 		case 2:
@@ -238,7 +246,7 @@ void Cmt0IntFunc(void){//0.25ms_timer
 		break;
 
 		case 3:
-			//gyro_read();
+			if( pattern != 0 )gyro_read();
 		break;
 		
 		case 4:
@@ -250,7 +258,7 @@ void Cmt0IntFunc(void){//0.25ms_timer
 			sen1L = result[4];
 			R_PG_ADC_12_StopConversion_S12AD0();
 			
-			if(sensor_out)R_PG_IO_PORT_Write_P15(1);
+			if(sensor_out)R_PG_IO_PORT_Write_P15(1);//センサ発光ＯＮ
 			
 			timer4k = 0;
 		break;
@@ -328,9 +336,9 @@ void ui_ctrl( void )
 	unsigned char data_re[ 1 ];
 	volatile short data;
 	
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 1);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	//printf("msd_write = 0x%x\n", data_tr[ 0 ]);
 }*/
 void gyro_start( void )
@@ -341,63 +349,66 @@ void gyro_start( void )
 	
 	data_tr[0]  = 0x6b;
 	data_tr[1]  = 0x80;//0x00
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x1a;
 	data_tr[1]  = 0x00;
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x1b;
 	data_tr[1]  = 0x18;
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x1c;
 	data_tr[1]  = 0x10;
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x68;
 	data_tr[1]  = 0x07;
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	for( j=0; j<10000; j++ );
 	
-	/*
+	
 	data_tr[0] = 0x37;
 	data_tr[1] = 0x02;
-	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
+	R_PG_IO_PORT_Write_P50(1);
+	for( j=0; j<10000; j++ );
 
 	data_tr[0]  = 0x6a;
 	data_tr[1]  = 0x10;
-	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
+	R_PG_IO_PORT_Write_P50(1);
+	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x6c;
 	data_tr[1]  = 0x00;
-	R_PG_IO_PORT_Write_P5(0x0);
-	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(0);
+	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 3);
+	R_PG_IO_PORT_Write_P50(1);
+	for( j=0; j<10000; j++ );
 	
 	data_tr[0]  = 0x23;
 	data_tr[1]  = 0xf8;//0x00
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
-	R_PG_IO_PORT_Write_P5(0xf);*/
+	R_PG_IO_PORT_Write_P50(1);
 }
 
 void gyro_read( void )
@@ -411,9 +422,9 @@ void gyro_read( void )
 	data_tr[4]  = 0x3f | 0x80;
 	data_tr[5]  = 0x40 | 0x80;
 	
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 7);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	
 	high = data_re[1];
 	low  = data_re[2];
@@ -435,9 +446,9 @@ void gyro_read( void )
 	data_tr[4]  = 0x47 | 0x80;
 	data_tr[5]  = 0x48 | 0x80;
 	
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 7);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	
 	high = data_re[1];
 	low  = data_re[2];
@@ -461,10 +472,10 @@ unsigned char who_am_i_read( void )
 	data_tr[0] = 0x75 | 0x80;
 	data_tr[1] = 0x00;
 	
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 2);
 	//R_PG_SCI_SPIMode_Transfer_C2( data_tr, data_re, 1);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	
 	//data = data_re[0];
 	//ret = data & 0x00ff;
@@ -477,9 +488,9 @@ unsigned char who_am_i_read( void )
 unsigned char spi_read( void ){	
 	unsigned char	data_tr_dummy[] = { 0x75 }, data_re[ 1 ] = { 0xff }, ret;
 	volatile short	data;
-	R_PG_IO_PORT_Write_P5(0x0);
+	R_PG_IO_PORT_Write_P50(0);
 	R_PG_SCI_SPIMode_Transfer_C2( data_tr_dummy, data_re, 1);
-	R_PG_IO_PORT_Write_P5(0xf);
+	R_PG_IO_PORT_Write_P50(1);
 	
 	ret = data_re[0];
 	//ret = data & 0x00ff;
