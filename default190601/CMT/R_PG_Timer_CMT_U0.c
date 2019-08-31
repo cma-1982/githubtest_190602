@@ -74,7 +74,7 @@ bool R_PG_Timer_Set_CMT_U0_C0(void)
 	return R_CMT_Create(
 		0,
 		PDL_CMT_PCLK_DIV_8 | PDL_CMT_DMAC_DTC_TRIGGER_DISABLE | PDL_CMT_STOP,
-		5999,
+		1499,
 		Cmt0IntFunc,
 		15
 	);

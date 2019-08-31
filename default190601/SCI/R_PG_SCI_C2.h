@@ -5,8 +5,8 @@
 * Copyright (C) 2010-2013 Renesas Electronics Corporation.
 * and Renesas Solutions Corporation. All rights reserved.
 ******************************************************************************
-* File Name    : R_PG_default190601.h
-* Version      : 
+* File Name    : R_PG_SCI_C2.h
+* Version      : 1.00
 * Description  : 
 ******************************************************************************
 * History : 31.08.2019 Version Description
@@ -17,21 +17,18 @@
 /******************************************************************************
 Includes   <System Includes> , "Project Includes"
 ******************************************************************************/
-#include ".\SYSTEM\R_PG_Clock.h"
-#include ".\IO\R_PG_IO_PORT.h"
-#include ".\IO\R_PG_IO_PORT_P1.h"
-#include ".\IO\R_PG_IO_PORT_P5.h"
-#include ".\IO\R_PG_IO_PORT_PA.h"
-#include ".\IO\R_PG_IO_PORT_PB.h"
-#include ".\IO\R_PG_IO_PORT_PD.h"
-#include ".\MTU\R_PG_Timer_MTU_U0_C0.h"
-#include ".\MTU\R_PG_Timer_MTU_U0_C2.h"
-#include ".\MTU\R_PG_Timer_MTU_U0_C3.h"
-#include ".\MTU\R_PG_Timer_MTU_U0.h"
-#include ".\CMT\R_PG_Timer_CMT_U0.h"
-#include ".\SCI\R_PG_SCI_C2.h"
-#include ".\AD_12\R_PG_ADC_12_S12AD0.h"
+#include <stdint.h>
+#include <stdbool.h>
 
+bool R_PG_SCI_Set_C2(void);
+bool R_PG_SCI_SPIMode_Transfer_C2(uint8_t * tx_start, uint8_t * rx_start, uint16_t count);
+bool R_PG_SCI_GetSentDataCount_C2(uint16_t * count);
+bool R_PG_SCI_StopCommunication_C2(void);
+bool R_PG_SCI_GetReceivedDataCount_C2(uint16_t * count);
+bool R_PG_SCI_SPIMode_GetErrorFlag_C2(bool * overrun);
+bool R_PG_SCI_ClearReceptionErrorFlag_C2(void);
+bool R_PG_SCI_GetTransmitStatus_C2(bool * complete);
+bool R_PG_SCI_StopModule_C2(void);
 
 
 

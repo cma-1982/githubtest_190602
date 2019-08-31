@@ -83,16 +83,16 @@ bool R_PG_Timer_Set_MTU_U0_C0(void)
 	parameters.counter_operation = PDL_MTU2_CLK_PCLK_DIV_1 | PDL_MTU2_CLK_RISING | PDL_MTU2_CLEAR_TGRA;
 	parameters.TGR_A_B_operation = PDL_MTU2_A_OC_LOW_CM_HIGH | PDL_MTU2_B_OC_LOW;
 	parameters.TGR_C_D_operation = PDL_MTU2_C_OC_LOW_CM_HIGH | PDL_MTU2_D_OC_LOW;
-	parameters.TGRA_TCNTV_value = 4799;
+	parameters.TGRA_TCNTV_value = 1199;
 	parameters.TGRB_TCNTW_value = 0;
-	parameters.TGRC_TGRU_value = 4799;
+	parameters.TGRC_TGRU_value = 1199;
 	parameters.TGRD_TGRV_value = 0;
 	parameters.TGRE_TGRW_value = 0;
 	parameters.TGRF_TADCORA_value = 0;
 
 	res = R_MTU2_Set(
 		0,
-		PDL_MTU2_PIN_0A_PB3 | PDL_MTU2_PIN_0C_P32,
+		PDL_MTU2_PIN_0A_PB3 | PDL_MTU2_PIN_0C_PB1,
 		PDL_NO_DATA
 	);
 

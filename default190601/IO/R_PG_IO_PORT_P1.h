@@ -5,8 +5,8 @@
 * Copyright (C) 2010-2013 Renesas Electronics Corporation.
 * and Renesas Solutions Corporation. All rights reserved.
 ******************************************************************************
-* File Name    : R_PG_default190601.h
-* Version      : 
+* File Name    : R_PG_IO_PORT_P1.h
+* Version      : 1.00
 * Description  : 
 ******************************************************************************
 * History : 31.08.2019 Version Description
@@ -17,21 +17,20 @@
 /******************************************************************************
 Includes   <System Includes> , "Project Includes"
 ******************************************************************************/
-#include ".\SYSTEM\R_PG_Clock.h"
-#include ".\IO\R_PG_IO_PORT.h"
-#include ".\IO\R_PG_IO_PORT_P1.h"
-#include ".\IO\R_PG_IO_PORT_P5.h"
-#include ".\IO\R_PG_IO_PORT_PA.h"
-#include ".\IO\R_PG_IO_PORT_PB.h"
-#include ".\IO\R_PG_IO_PORT_PD.h"
-#include ".\MTU\R_PG_Timer_MTU_U0_C0.h"
-#include ".\MTU\R_PG_Timer_MTU_U0_C2.h"
-#include ".\MTU\R_PG_Timer_MTU_U0_C3.h"
-#include ".\MTU\R_PG_Timer_MTU_U0.h"
-#include ".\CMT\R_PG_Timer_CMT_U0.h"
-#include ".\SCI\R_PG_SCI_C2.h"
-#include ".\AD_12\R_PG_ADC_12_S12AD0.h"
+#include <stdint.h>
+#include <stdbool.h>
 
+bool R_PG_IO_PORT_Set_P1(void);
+bool R_PG_IO_PORT_Set_P15(void);
+bool R_PG_IO_PORT_Read_P1(uint8_t * data);
+bool R_PG_IO_PORT_Read_P12(uint8_t * data);
+bool R_PG_IO_PORT_Read_P13(uint8_t * data);
+bool R_PG_IO_PORT_Read_P14(uint8_t * data);
+bool R_PG_IO_PORT_Read_P15(uint8_t * data);
+bool R_PG_IO_PORT_Read_P16(uint8_t * data);
+bool R_PG_IO_PORT_Read_P17(uint8_t * data);
+bool R_PG_IO_PORT_Write_P1(uint8_t data);
+bool R_PG_IO_PORT_Write_P15(uint8_t data);
 
 
 
