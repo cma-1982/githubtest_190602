@@ -8,16 +8,104 @@
   <Project Name="test190601" Type="Application">
     <Files>
       <Path>dbsct.c</Path>
-      <Path>intprg.c</Path>
       <Path>resetprg.c</Path>
       <Path>sbrk.c</Path>
       <Path>test190601.c</Path>
-      <Path>vecttbl.c</Path>
       <Path>iodefine.h</Path>
       <Path>sbrk.h</Path>
       <Path>stacksct.h</Path>
       <Path>typedefine.h</Path>
       <Path>vect.h</Path>
+      <Category Name="AddFromPDG">
+        <Category Name="SYSTEM">
+          <Path>default190601\SYSTEM\R_PG_Clock.c</Path>
+          <Path>default190601\SYSTEM\R_PG_Clock.h</Path>
+        </Category>
+        <Category Name="IO">
+          <Path>default190601\IO\R_PG_IO_PORT.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P5.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P5.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PB.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PB.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PD.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PD.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PA.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_PA.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P2.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P2.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P3.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P3.h</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P1.c</Path>
+          <Path>default190601\IO\R_PG_IO_PORT_P1.h</Path>
+        </Category>
+        <Category Name="MTU">
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C0.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C0.h</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C1.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C1.h</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C2.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C2.h</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C3.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C3.h</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C4.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C4.h</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0.h</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C5.c</Path>
+          <Path>default190601\MTU\R_PG_Timer_MTU_U0_C5.h</Path>
+        </Category>
+        <Category Name="CMT">
+          <Path>default190601\CMT\R_PG_Timer_CMT_U0.c</Path>
+          <Path>default190601\CMT\R_PG_Timer_CMT_U0.h</Path>
+        </Category>
+        <Category Name="SCI">
+          <Path>default190601\SCI\R_PG_SCI_C0.c</Path>
+          <Path>default190601\SCI\R_PG_SCI_C0.h</Path>
+          <Path>default190601\SCI\R_PG_SCI_C2.c</Path>
+          <Path>default190601\SCI\R_PG_SCI_C2.h</Path>
+        </Category>
+        <Category Name="AD_12">
+          <Path>default190601\AD_12\R_PG_ADC_12_S12AD0.c</Path>
+          <Path>default190601\AD_12\R_PG_ADC_12_S12AD0.h</Path>
+        </Category>
+        <Category Name="i_src">
+          <Path>default190601\i_src\r_pdl_user_definitions.h</Path>
+          <Path>default190601\i_src\Interrupt_INTC.c</Path>
+          <Path>default190601\i_src\Interrupt_CMT.c</Path>
+          <Path>default190601\i_src\iodefine_RPDL.h</Path>
+          <Path>default190601\i_src\r_pdl_common_defs_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_definitions.h</Path>
+          <Path>default190601\i_src\r_pdl_intc.h</Path>
+          <Path>default190601\i_src\r_pdl_intc_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_cgc.h</Path>
+          <Path>default190601\i_src\r_pdl_cgc_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_rwp.h</Path>
+          <Path>default190601\i_src\r_pdl_rwp_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_io_port.h</Path>
+          <Path>default190601\i_src\r_pdl_io_port_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_mtu2.h</Path>
+          <Path>default190601\i_src\r_pdl_mtu2_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_cmt.h</Path>
+          <Path>default190601\i_src\r_pdl_cmt_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_sci.h</Path>
+          <Path>default190601\i_src\r_pdl_sci_RX63Nxx.h</Path>
+          <Path>default190601\i_src\r_pdl_adc_12.h</Path>
+          <Path>default190601\i_src\r_pdl_adc_12_RX63Nxx.h</Path>
+          <Path>default190601\i_src\Interrupt_MTU2.c</Path>
+          <Path>default190601\i_src\Interrupt_MTU2_TPU.c</Path>
+        </Category>
+        <Path>default190601\R_PG_default190601.h</Path>
+        <Path>default190601\R_PG_IntFuncsExtern.h</Path>
+        <Path>default190601\R_PG_RPDL_headers.h</Path>
+      </Category>
+      <Path>hwsetup.c</Path>
+      <Path>lowsrc.c</Path>
+      <Path>SCI.c</Path>
+      <Path>lowsrc.h</Path>
+      <Path>SCI.h</Path>
+      <Path>E2dataFlash.c</Path>
+      <Path>E2dataFlash.h</Path>
     </Files>
     <DebugOptions>
       <DebugTool>Simulator</DebugTool>
@@ -33,7 +121,17 @@
         <CompileOptions>
           <Option>-isa=rxv1</Option>
           <Option>-fpu</Option>
+          <Option>-dbl_size=8</Option>
           <Option>-lang=c</Option>
+          <Option>-include=.</Option>
+          <Option>-include=default190601</Option>
+          <Option>-include=default190601\i_src</Option>
+          <Option>-include=default190601\AD_12</Option>
+          <Option>-include=default190601\SCI</Option>
+          <Option>-include=default190601\CMT</Option>
+          <Option>-include=default190601\MTU</Option>
+          <Option>-include=default190601\IO</Option>
+          <Option>-include=default190601\SYSTEM</Option>
           <Option>-output=obj</Option>
           <Option>-debug</Option>
           <Option>-nologo</Option>
@@ -46,6 +144,7 @@
           <Option>-debug</Option>
         </AssembleOptions>
         <LinkOptions>
+          <Option>-library=C:\Renesas\PDG2\lib\RX63N\RX63N_library_100_little.lib</Option>
           <Option>-output=%BuildModeName%\%ProjectName%.abs</Option>
           <Option>-list=%BuildModeName%\%ProjectName%.map</Option>
           <Option>-nooptimize</Option>
@@ -62,6 +161,7 @@
         <LibraryGenerateOptions>
           <Option>-isa=rxv1</Option>
           <Option>-fpu</Option>
+          <Option>-dbl_size=8</Option>
           <Option>-head=runtime,stdio,stdlib,string,new</Option>
           <Option>-output=%BuildModeName%\%ProjectName%.lib</Option>
           <Option>-nologo</Option>
@@ -69,13 +169,49 @@
         </LibraryGenerateOptions>
         <LinkOrder>
           <Path>DefaultBuild\dbsct.obj</Path>
-          <Path>DefaultBuild\intprg.obj</Path>
           <Path>DefaultBuild\resetprg.obj</Path>
           <Path>DefaultBuild\sbrk.obj</Path>
           <Path>DefaultBuild\test190601.obj</Path>
-          <Path>DefaultBuild\vecttbl.obj</Path>
+          <Path>DefaultBuild\R_PG_Clock.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_P5.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0_C0.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0_C1.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0_C2.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0_C3.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0_C4.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_CMT_U0.obj</Path>
+          <Path>DefaultBuild\R_PG_SCI_C0.obj</Path>
+          <Path>DefaultBuild\R_PG_ADC_12_S12AD0.obj</Path>
+          <Path>DefaultBuild\Interrupt_INTC.obj</Path>
+          <Path>DefaultBuild\Interrupt_CMT.obj</Path>
+          <Path>DefaultBuild\hwsetup.obj</Path>
+          <Path>DefaultBuild\lowsrc.obj</Path>
+          <Path>DefaultBuild\SCI.obj</Path>
+          <Path>DefaultBuild\R_PG_Timer_MTU_U0_C5.obj</Path>
+          <Path>DefaultBuild\Interrupt_MTU2.obj</Path>
+          <Path>DefaultBuild\Interrupt_MTU2_TPU.obj</Path>
+          <Path>DefaultBuild\E2dataFlash.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_PB.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_PD.obj</Path>
+          <Path>DefaultBuild\R_PG_SCI_C2.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_PA.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_P2.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_P3.obj</Path>
+          <Path>DefaultBuild\R_PG_IO_PORT_P1.obj</Path>
         </LinkOrder>
-        <CommonOptions />
+        <CommonOptions>
+          <IncludePathForC>.</IncludePathForC>
+          <IncludePathForC>default190601</IncludePathForC>
+          <IncludePathForC>default190601\i_src</IncludePathForC>
+          <IncludePathForC>default190601\AD_12</IncludePathForC>
+          <IncludePathForC>default190601\SCI</IncludePathForC>
+          <IncludePathForC>default190601\CMT</IncludePathForC>
+          <IncludePathForC>default190601\MTU</IncludePathForC>
+          <IncludePathForC>default190601\IO</IncludePathForC>
+          <IncludePathForC>default190601\SYSTEM</IncludePathForC>
+        </CommonOptions>
       </BuildMode>
     </BuildOptions>
   </Project>
